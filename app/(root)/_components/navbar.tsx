@@ -18,14 +18,9 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 60);
     handleScroll();
-
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -35,21 +30,44 @@ export default function Navbar() {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
             ? "bg-white/95 backdrop-blur-md shadow-md py-4"
-            : "bg-transparent py-7"
+            : "bg-transparent py-5 lg:py-7"
         }`}
       >
-        <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
+        <div className="mx-auto max-w-[1500px] px-5 lg:px-10">
 
-          {/* Desktop Layout */}
+          {/* Mobile & Tablet: simple flex row */}
+          <div className="flex items-center justify-between lg:hidden">
+            <Link href="/" className="flex items-center gap-3">
+              <Image
+                src={
+                  scrolled
+                    ? "/assets/logos/chelsea_portland_logo_152x56px_dark.svg"
+                    : "/assets/logos/chelsea_portland_logo_152x56px.svg"
+                }
+                alt="Chelsea Portland House"
+                width={140}
+                height={52}
+                priority
+                className="w-32 sm:w-36"
+              />
+            </Link>
 
-          <div className="grid grid-cols-[220px_1fr_220px] items-center">
+            <button
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+              className={`p-1 transition ${
+                scrolled ? "text-slate-900" : "text-white"
+              }`}
+            >
+              <Menu size={28} />
+            </button>
+          </div>
+
+          {/* Desktop: 3-column grid */}
+          <div className="hidden lg:grid lg:grid-cols-[220px_1fr_220px] lg:items-center">
 
             {/* Logo */}
-
             <Link href="/" className="flex items-center gap-3">
-
-              {/* Replace with your logo */}
-
               <Image
                 src={
                   scrolled
@@ -61,13 +79,10 @@ export default function Navbar() {
                 height={70}
                 priority
               />
-
             </Link>
 
             {/* Center Navigation */}
-
-            <div className="hidden justify-center lg:flex">
-
+            <div className="flex justify-center">
               <div
                 className={`transition-all duration-500 ${
                   scrolled
@@ -76,12 +91,11 @@ export default function Navbar() {
                 } rounded-sm px-3 py-1`}
               >
                 <ul className="flex items-center">
-
                   {navigation.map((item, index) => (
                     <li key={item.label}>
                       <Link
                         href={item.href}
-                        className={`text-[13px] tracking-wide transition-all duration-300 px-6 py-3 block ${
+                        className={`text-[13px] tracking-wide transition-all duration-300 px-5 xl:px-6 py-3 block ${
                           index === 0
                             ? scrolled
                               ? "text-slate-900 font-medium"
@@ -95,34 +109,17 @@ export default function Navbar() {
                       </Link>
                     </li>
                   ))}
-
                 </ul>
               </div>
-
             </div>
 
-            {/* Mobile Button */}
-
-            <div className="flex justify-end lg:hidden">
-
-              <button
-                onClick={() => setMobileOpen(true)}
-                aria-label="Open menu"
-                className={`transition ${
-                  scrolled ? "text-slate-900" : "text-white"
-                }`}
-              >
-                <Menu size={30} />
-              </button>
-
-            </div>
-
+            {/* Right placeholder (keeps logo left, nav centered) */}
+            <div />
           </div>
         </div>
       </header>
 
       {/* Mobile Menu */}
-
       <div
         className={`fixed inset-0 z-[60] bg-white transition-transform duration-500 ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
@@ -132,13 +129,13 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(false)}
             aria-label="Close menu"
+            className="text-slate-800"
           >
             <X size={30} />
           </button>
         </div>
 
         <nav className="flex h-[80vh] flex-col items-center justify-center gap-10">
-
           {navigation.map((item) => (
             <Link
               key={item.label}
@@ -149,7 +146,6 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-
         </nav>
       </div>
     </>

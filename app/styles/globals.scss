@@ -130,3 +130,44 @@ button {
 .bg-secondary {
   background-color: var(--color-secondary);
 }
+
+.service-card {
+  border: 1px solid rgba(0, 16, 30, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 20px 45px -30px rgba(0, 16, 30, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 50px -28px rgba(0, 16, 30, 0.4);
+}
+
+.service-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background-color: rgba(175, 0, 64, 0.12);
+  color: var(--color-secondary);
+  margin-bottom: 1rem;
+}
+
+.service-card__title {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0 0 0.75rem;
+}
+
+.service-card__description {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin: 0;
+}
