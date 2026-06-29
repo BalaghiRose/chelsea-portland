@@ -1,0 +1,71 @@
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { featuredCaseStudies } from "../utils/components/caseStudies";
+import CaseStudyCard from "../utils/components/CaseStudyCard";
+
+export default function CaseStudies() {
+  return (
+    <section
+      id="case-studies"
+      className="bg-[#F4F4F4] py-24 lg:py-32"
+    >
+      <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
+
+        {/* Heading */}
+
+        <div className="mb-16 text-center">
+
+          <p className="section-label text-secondary mx-auto">
+            Case Studies
+          </p>
+
+        </div>
+
+        {/* Grid */}
+
+        <div className="mx-auto grid gap-6 lg:grid-cols-2">
+
+          {featuredCaseStudies.slice(0, 4).map((study) => (
+            <CaseStudyCard
+              key={study.id}
+              study={study}
+            />
+          ))}
+
+        </div>
+
+        {/* Button */}
+
+        <div className="mt-14 flex justify-center">
+
+          <Link
+            href="/case-studies"
+            className="
+            inline-flex
+            items-center
+            gap-4
+            border
+            border-[#00101E]
+            px-8
+            py-4
+            text-sm
+            text-[#00101E]
+            uppercase
+            tracking-wider
+            transition
+            hover:bg-[#00101E]
+            hover:text-white
+          "
+          >
+            View All Case Studies
+
+            <ChevronRight size={18} />
+
+          </Link>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}

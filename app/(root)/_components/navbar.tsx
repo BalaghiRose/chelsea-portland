@@ -6,11 +6,11 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navigation = [
-  { label: "HOME", href: "#home" },
-  { label: "ABOUT US", href: "#about" },
-  { label: "SERVICES", href: "#services" },
-  { label: "CASE STUDIES", href: "#case-studies" },
-  { label: "CONTACT", href: "#contact" },
+  { label: "HOME", href: "/" },
+  { label: "ABOUT US", href: "/#about" },
+  { label: "SERVICES", href: "/#services" },
+  { label: "CASE STUDIES", href: "/case-studies" },
+  { label: "CONTACT", href: "/#contact" },
 ];
 
 export default function Navbar() {

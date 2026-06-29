@@ -36,7 +36,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="bg-[#F6F6F6] py-24 lg:py-32"
+      className="bg-[#F4F4F4] py-24 lg:py-32"
     >
       <div className="container mx-auto">
 

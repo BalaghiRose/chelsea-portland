@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Navbar from "./_components/navbar";
 
 export const metadata: Metadata = {
   title: "Chelsea Portland",
-  description: "A polished, modern landing page experience.",
+  description: "Strategic case studies, services, and international UK market support.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <div>{children}</div>;
+  return (
+    <>
+      <Navbar />
+      <div>{children}</div>
+    </>
+  );
 }
