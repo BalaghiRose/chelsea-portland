@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 import "swiper/css";
 
@@ -32,6 +34,24 @@ const services = [
 
 export default function Services() {
   const swiperRef = useRef<SwiperType | null>(null);
+  const dynamicServices = useQuery(api.services.getServices);
+  const sectionSettings = useQuery(api.services.getServicesSectionSettings);
+
+  const serviceItems =
+    dynamicServices && dynamicServices.length > 0
+      ? dynamicServices.map((service) => ({
+          id: service._id,
+          icon: service.iconUrl ?? "/icons/business.svg",
+          title: service.title,
+          description: service.description.join(" "),
+          image: service.thumbnailUrl ?? "/assets/images/services_image-1.jpg",
+          button: "Arrange an Introduction Call",
+          altText: service.altText,
+        }))
+      : services.map((service) => ({
+          ...service,
+          altText: service.title,
+        }));
 
   return (
     <section
@@ -45,7 +65,7 @@ export default function Services() {
         <div className="mb-16 text-center">
 
           <p className="text-secondary section-label mx-auto">
-            OUR SERVICES
+            {(sectionSettings?.title ?? "Services").toUpperCase()}
           </p>
 
         </div>
@@ -58,7 +78,7 @@ export default function Services() {
           spaceBetween={30}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
         >
-          {services.map((service) => (
+          {serviceItems.map((service) => (
             <SwiperSlide key={service.id}>
 
               <div className="grid overflow-hidden bg-white lg:grid-cols-2">
@@ -69,7 +89,7 @@ export default function Services() {
 
                   <Image
                     src={service.icon}
-                    alt=""
+                    alt={`${service.title} icon`}
                     width={64}
                     height={64}
                     className="mb-12"
@@ -114,7 +134,7 @@ export default function Services() {
 
                   <Image
                     src={service.image}
-                    alt={service.title}
+                    alt={service.altText}
                     fill
                     className="object-cover"
                   />

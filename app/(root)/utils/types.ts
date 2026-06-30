@@ -1,18 +1,10 @@
 export interface CaseStudy {
-  id: number;
+  _id: string;
   slug: string;
   title: string;
-  image: string;
-  summary: string;
-  client: string;
-  sector: string;
-  location: string;
-  duration: string;
+  paras: string;
   featured: boolean;
-  services: string[];
-  results: string[];
-  sections: {
-    title: string;
-    paragraphs: string[];
-  }[];
+  altText: string;
+  thumbnailUrl: string | null;
+  sortOrder?: number;
 }

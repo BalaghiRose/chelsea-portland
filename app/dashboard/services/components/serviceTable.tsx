@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useMutation } from "convex/react";
-import { Pencil, Trash2 } from "lucide-react";
-import type { Doc } from "@/convex/_generated/dataModel";
+import { GripVertical, Pencil, Trash2 } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import {
 	Table,
 	TableBody,
@@ -25,10 +25,12 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import type { DashboardService } from "./types";
 
 interface ServiceTableProps {
-	services: Doc<"services">[];
+	services: DashboardService[];
 	loading: boolean;
+	onEdit: (service: DashboardService) => void;
 }
 
 function formatDate(timestamp: number) {
@@ -42,11 +44,14 @@ function formatDate(timestamp: number) {
 export default function ServiceTable({
 	services,
 	loading,
+	onEdit,
 }: ServiceTableProps) {
 	const deleteService = useMutation(api.services.deleteService);
+	const reorderServices = useMutation(api.services.reorderServices);
 	const [deletingId, setDeletingId] = useState<string | null>(null);
+	const [draggingId, setDraggingId] = useState<string | null>(null);
 
-	const handleDelete = async (id: Doc<"services">["_id"]) => {
+	const handleDelete = async (id: DashboardService["_id"]) => {
 		setDeletingId(id);
 
 		try {
@@ -56,14 +61,44 @@ export default function ServiceTable({
 		}
 	};
 
+	const handleDrop = async (targetId: DashboardService["_id"]) => {
+		if (!draggingId || draggingId === targetId) {
+			setDraggingId(null);
+			return;
+		}
+
+		const ids = services.map((service) => service._id);
+		const sourceIndex = ids.findIndex((id) => id === draggingId);
+		const targetIndex = ids.findIndex((id) => id === targetId);
+
+		if (sourceIndex === -1 || targetIndex === -1) {
+			setDraggingId(null);
+			return;
+		}
+
+		const reordered = [...ids];
+		const [movedId] = reordered.splice(sourceIndex, 1);
+		reordered.splice(targetIndex, 0, movedId);
+
+		await reorderServices({ ids: reordered });
+		setDraggingId(null);
+	};
+
 	return (
 		<section className="overflow-hidden rounded-3xl border border-border bg-card">
+			<div className="border-b border-border px-6 py-3 text-xs text-muted-foreground">
+				Drag rows using the left handle to reorder services.
+			</div>
 			<Table>
 				<TableHeader>
 					<TableRow>
+						<TableHead className="w-10" />
+						<TableHead>Icon</TableHead>
+						<TableHead>Thumbnail</TableHead>
 						<TableHead>Title</TableHead>
 						<TableHead>Alt Text</TableHead>
 						<TableHead>Description Items</TableHead>
+						<TableHead>Order</TableHead>
 						<TableHead>Updated</TableHead>
 						<TableHead className="text-right">Actions</TableHead>
 					</TableRow>
@@ -72,7 +107,7 @@ export default function ServiceTable({
 				<TableBody>
 					{loading ? (
 						<TableRow>
-							<TableCell colSpan={5} className="py-8 text-center text-muted-foreground">
+							<TableCell colSpan={9} className="py-8 text-center text-muted-foreground">
 								Loading services...
 							</TableCell>
 						</TableRow>
@@ -80,7 +115,7 @@ export default function ServiceTable({
 
 					{!loading && services.length === 0 ? (
 						<TableRow>
-							<TableCell colSpan={5} className="py-8 text-center text-muted-foreground">
+							<TableCell colSpan={9} className="py-8 text-center text-muted-foreground">
 								No services yet. Click Add Service to create your first one.
 							</TableCell>
 						</TableRow>
@@ -88,7 +123,56 @@ export default function ServiceTable({
 
 					{!loading
 						? services.map((service) => (
-								<TableRow key={service._id}>
+								<TableRow
+									key={service._id}
+									onDragOver={(event) => event.preventDefault()}
+									onDrop={() => handleDrop(service._id)}
+									className={draggingId === service._id ? "opacity-60" : undefined}
+								>
+									<TableCell>
+										<button
+											type="button"
+											draggable
+											onDragStart={() => setDraggingId(service._id)}
+											onDragEnd={() => setDraggingId(null)}
+											className="cursor-grab text-muted-foreground hover:text-primary"
+											aria-label="Drag to reorder"
+										>
+											<GripVertical size={16} />
+										</button>
+									</TableCell>
+									<TableCell>
+										<div className="relative h-12 w-12 overflow-hidden rounded-xl border border-border bg-muted/30">
+											{service.iconUrl ? (
+												<Image
+													src={service.iconUrl}
+													alt={service.title}
+													fill
+													className="object-contain"
+												/>
+											) : (
+												<div className="flex h-full items-center justify-center text-[10px] text-muted-foreground">
+													No icon
+												</div>
+											)}
+										</div>
+									</TableCell>
+									<TableCell>
+										<div className="relative h-14 w-24 overflow-hidden rounded-xl border border-border bg-muted/30">
+											{service.thumbnailUrl ? (
+												<Image
+													src={service.thumbnailUrl}
+													alt={service.altText}
+													fill
+													className="object-cover"
+												/>
+											) : (
+												<div className="flex h-full items-center justify-center text-xs text-muted-foreground">
+													No image
+												</div>
+											)}
+										</div>
+									</TableCell>
 									<TableCell className="font-medium text-foreground">
 										{service.title}
 									</TableCell>
@@ -96,6 +180,7 @@ export default function ServiceTable({
 										{service.altText}
 									</TableCell>
 									<TableCell>{service.description.length}</TableCell>
+									<TableCell>{service.sortOrder ?? "-"}</TableCell>
 									<TableCell className="text-muted-foreground">
 										{formatDate(service.updatedAt)}
 									</TableCell>
@@ -106,7 +191,7 @@ export default function ServiceTable({
 												variant="outline"
 												size="sm"
 												className="rounded-2xl"
-												disabled
+												onClick={() => onEdit(service)}
 											>
 												<Pencil size={14} />
 												Edit

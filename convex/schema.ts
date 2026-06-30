@@ -7,32 +7,45 @@ export default defineSchema({
 
     description: v.array(v.string()),
 
+    icon: v.optional(v.id("_storage")),
+
     thumbnail: v.optional(v.id("_storage")),
 
     altText: v.string(),
+
+    sortOrder: v.optional(v.number()),
 
     createdAt: v.number(),
 
     updatedAt: v.number(),
   }),
 
-  caseStudies: defineTable({
+  sectionSettings: defineTable({
+    key: v.string(),
+
     title: v.string(),
 
-    sectionTitle: v.string(),
+    updatedAt: v.number(),
+  }).index("by_key", ["key"]),
 
-    description: v.string(),
+  caseStudies: defineTable({
+    slug: v.string(),
+
+    title: v.string(),
+
+    paras: v.string(),
+
+    featured: v.boolean(),
 
     thumbnail: v.optional(v.id("_storage")),
 
     altText: v.string(),
 
-    createdBy: v.optional(v.string()),
-
-    publishedDate: v.number(),
+    sortOrder: v.optional(v.number()),
 
     createdAt: v.number(),
 
     updatedAt: v.number(),
-  }),
+  })
+    .index("by_slug", ["slug"]),
 });

@@ -9,14 +9,16 @@ interface Props {
 }
 
 export default function CaseStudyCard({ study }: Props) {
+  const imageSrc = study.thumbnailUrl ?? "/assets/images/casestudies1.jpg";
+
   return (
     <article className="group mx-auto min-w-full overflow-hidden bg-white shadow-sm">
 
       <div className="relative aspect-[16/9] overflow-hidden">
 
         <Image
-          src={study.image}
-          alt={study.title}
+          src={imageSrc}
+          alt={study.altText || study.title}
           fill
           className="object-cover transition duration-700 group-hover:scale-105"
         />
@@ -26,11 +28,6 @@ export default function CaseStudyCard({ study }: Props) {
       <div className="flex flex-col gap-5 bg-[#071320] px-6 py-5 sm:flex-row sm:items-center sm:justify-between lg:px-8 lg:py-6">
 
         <div className="space-y-3 sm:max-w-[65%]">
-
-        <p className="text-[11px] uppercase tracking-[0.22em] text-white/60">
-          {study.location}
-        </p>
-
         <h3 className="text-base leading-7 text-white lg:text-lg">
           {study.title}
         </h3>

@@ -1,6 +1,5 @@
 "use client";
 
-import type { DashboardService } from "./types";
 import {
   Dialog,
   DialogContent,
@@ -8,40 +7,40 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import type { DashboardCaseStudy } from "./types";
+import CaseStudyForm from "./caseStudyForm";
 
-import ServiceForm from "./serviceForm";
-
-interface ServiceDialogProps {
+interface CaseStudyDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  service: DashboardService | null;
+  caseStudy: DashboardCaseStudy | null;
 }
 
-export default function ServiceDialog({
+export default function CaseStudyDialog({
   open,
   onOpenChange,
-  service,
-}: ServiceDialogProps) {
-  const isEditMode = Boolean(service);
+  caseStudy,
+}: CaseStudyDialogProps) {
+  const isEditMode = Boolean(caseStudy);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="rounded-3xl">
         <DialogHeader>
           <DialogTitle className="text-2xl">
-            {isEditMode ? "Edit Service" : "Add Service"}
+            {isEditMode ? "Edit Case Study" : "Add Case Study"}
           </DialogTitle>
 
           <DialogDescription>
             {isEditMode
-              ? "Update the selected service details and save changes."
-              : "Use the form below to add a new service that will appear on the website."}
+              ? "Update the selected case study details and save changes."
+              : "Use the form below to create a case study shown on website pages."}
           </DialogDescription>
         </DialogHeader>
 
-        <ServiceForm
-          key={service?._id ?? "new-service"}
-          service={service}
+        <CaseStudyForm
+          key={caseStudy?._id ?? "new-case-study"}
+          caseStudy={caseStudy}
           onSuccess={() => onOpenChange(false)}
           onCancel={() => onOpenChange(false)}
         />

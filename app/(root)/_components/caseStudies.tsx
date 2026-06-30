@@ -1,9 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { featuredCaseStudies } from "../utils/components/caseStudies";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import CaseStudyCard from "../utils/components/CaseStudyCard";
+import type { CaseStudy } from "../utils/types";
 
 export default function CaseStudies() {
+  const caseStudies = useQuery(api.caseStudies.getCaseStudies);
+  const settings = useQuery(api.caseStudies.getCaseStudiesSectionSettings);
+
+  const featuredCaseStudies = ((caseStudies ?? []) as CaseStudy[])
+    .filter((study) => study.featured)
+    .slice(0, 4);
+
   return (
     <section
       id="case-studies"
@@ -16,7 +27,7 @@ export default function CaseStudies() {
         <div className="mb-16 text-center">
 
           <p className="section-label text-secondary mx-auto">
-            Case Studies
+            {settings?.title ?? "Case Studies"}
           </p>
 
         </div>
@@ -25,9 +36,9 @@ export default function CaseStudies() {
 
         <div className="mx-auto grid gap-6 lg:grid-cols-2">
 
-          {featuredCaseStudies.slice(0, 4).map((study) => (
+          {featuredCaseStudies.map((study) => (
             <CaseStudyCard
-              key={study.id}
+              key={study._id}
               study={study}
             />
           ))}

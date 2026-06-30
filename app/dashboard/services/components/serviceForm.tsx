@@ -7,21 +7,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import type { DashboardService } from "./types";
+import Image from "next/image";
 
 interface ServiceFormProps {
+  service: DashboardService | null;
   onSuccess?: () => void;
   onCancel?: () => void;
 }
 
 export default function ServiceForm({
+  service,
   onSuccess,
   onCancel,
 }: ServiceFormProps) {
   const createService = useMutation(api.services.createService);
+  const updateService = useMutation(api.services.updateService);
+  const generateUploadUrl = useMutation(api.services.generateUploadUrl);
 
-  const [title, setTitle] = useState("");
-  const [altText, setAltText] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(service?.title ?? "");
+  const [altText, setAltText] = useState(service?.altText ?? "");
+  const [description, setDescription] = useState(service?.description.join("\n") ?? "");
+  const [iconFile, setIconFile] = useState<File | null>(null);
+  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (
@@ -36,18 +44,74 @@ export default function ServiceForm({
     setIsSubmitting(true);
 
     try {
-      await createService({
-        title: title.trim(),
-        altText: altText.trim(),
-        description: description
-          .split("\n")
-          .map((line) => line.trim())
-          .filter(Boolean),
-      });
+      const parsedDescription = description
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+      let uploadedIcon = service?.icon;
+      let uploadedThumbnail = service?.thumbnail;
+
+      if (iconFile) {
+        const uploadUrl = await generateUploadUrl();
+        const uploadResponse = await fetch(uploadUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": iconFile.type,
+          },
+          body: iconFile,
+        });
+
+        if (!uploadResponse.ok) {
+          throw new Error("Icon upload failed");
+        }
+
+        const { storageId } = await uploadResponse.json();
+        uploadedIcon = storageId;
+      }
+
+      if (thumbnailFile) {
+        const uploadUrl = await generateUploadUrl();
+        const uploadResponse = await fetch(uploadUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": thumbnailFile.type,
+          },
+          body: thumbnailFile,
+        });
+
+        if (!uploadResponse.ok) {
+          throw new Error("Thumbnail upload failed");
+        }
+
+        const { storageId } = await uploadResponse.json();
+        uploadedThumbnail = storageId;
+      }
+
+      if (service) {
+        await updateService({
+          id: service._id,
+          title: title.trim(),
+          altText: altText.trim(),
+          description: parsedDescription,
+          icon: uploadedIcon,
+          thumbnail: uploadedThumbnail,
+        });
+      } else {
+        await createService({
+          title: title.trim(),
+          altText: altText.trim(),
+          description: parsedDescription,
+          icon: uploadedIcon,
+          thumbnail: uploadedThumbnail,
+        });
+      }
 
       setTitle("");
       setAltText("");
       setDescription("");
+      setIconFile(null);
+      setThumbnailFile(null);
 
       onSuccess?.();
     } finally {
@@ -60,60 +124,128 @@ export default function ServiceForm({
       onSubmit={handleSubmit}
       className="space-y-6"
     >
-      <div>
-        <Label className="mb-2 block text-sm font-medium text-primary">
-          Service Title
-        </Label>
+      <div className="grid gap-8 lg:grid-cols-2">
+        <div className="space-y-6">
+          <div>
+            <Label className="mb-2 block text-sm font-medium text-primary">
+              Service Title
+            </Label>
 
-        <Input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="h-11 rounded-2xl border-border bg-background"
-          placeholder="UK Market Entry & Business Establishment"
-        />
-      </div>
+            <Input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="h-11 rounded-2xl border-border bg-background"
+              placeholder="UK Market Entry & Business Establishment"
+            />
+          </div>
 
-      <div>
-        <Label className="mb-2 block text-sm font-medium text-primary">
-          Alt Text
-        </Label>
+          <div>
+            <Label className="mb-2 block text-sm font-medium text-primary">
+              Description
+            </Label>
 
-        <Input
-          value={altText}
-          onChange={(e) => setAltText(e.target.value)}
-          className="h-11 rounded-2xl border-border bg-background"
-          placeholder="Service thumbnail"
-        />
-      </div>
+            <Textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={10}
+              className="rounded-2xl border-border bg-background"
+              placeholder="Add one paragraph per line"
+            />
+          </div>
+        </div>
 
-      <div>
-        <Label className="mb-2 block text-sm font-medium text-primary">
-          Description
-        </Label>
+        <div className="space-y-6">
+          <div>
+            <Label className="mb-2 block text-sm font-medium text-primary">
+              Service Icon
+            </Label>
 
-        <Textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          rows={6}
-          className="rounded-2xl border-border bg-background"
-          placeholder="Add one paragraph per line"
-        />
-      </div>
+            {service?.iconUrl ? (
+              <div className="mb-4 inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-border bg-muted/30 p-2">
+                <div className="relative h-full w-full overflow-hidden rounded-xl">
+                  <Image
+                    src={service.iconUrl}
+                    alt={service.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            ) : null}
 
-      <div>
-        <Label className="mb-2 block text-sm font-medium text-primary">
-          Thumbnail
-        </Label>
+            <input
+              type="file"
+              accept="image/*"
+              className="block text-sm text-muted-foreground file:mr-4 file:rounded-2xl file:border file:border-border file:bg-background file:px-4 file:py-2 file:text-sm file:text-foreground"
+              onChange={(e) => {
+                const file = e.target.files?.[0] ?? null;
+                setIconFile(file);
+              }}
+            />
 
-        <input
-          type="file"
-          className="block text-sm text-muted-foreground file:mr-4 file:rounded-2xl file:border file:border-border file:bg-background file:px-4 file:py-2 file:text-sm file:text-foreground"
-          disabled
-        />
+            {iconFile ? (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Selected icon: {iconFile.name}
+              </p>
+            ) : (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Upload the icon displayed above the service title.
+              </p>
+            )}
+          </div>
 
-        <p className="mt-2 text-xs text-muted-foreground">
-          File upload wiring can be connected to Convex storage in the next step.
-        </p>
+          <div>
+            <Label className="mb-2 block text-sm font-medium text-primary">
+              Thumbnail
+            </Label>
+
+            {service?.thumbnailUrl ? (
+              <div className="mb-4 overflow-hidden rounded-2xl border border-border bg-muted/30 p-2">
+                <div className="relative aspect-[16/8] overflow-hidden rounded-xl">
+                  <Image
+                    src={service.thumbnailUrl}
+                    alt={altText || service.altText}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            ) : null}
+
+            <input
+              type="file"
+              accept="image/*"
+              className="block text-sm text-muted-foreground file:mr-4 file:rounded-2xl file:border file:border-border file:bg-background file:px-4 file:py-2 file:text-sm file:text-foreground"
+              onChange={(e) => {
+                const file = e.target.files?.[0] ?? null;
+                setThumbnailFile(file);
+              }}
+            />
+
+            {thumbnailFile ? (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Selected: {thumbnailFile.name}
+              </p>
+            ) : (
+              <p className="mt-2 text-xs text-muted-foreground">
+                Upload a thumbnail image used in dashboard and homepage services section.
+              </p>
+            )}
+          </div>
+
+          <div>
+            <Label className="mb-2 block text-sm font-medium text-primary">
+              Alt Text
+            </Label>
+
+            <Input
+              value={altText}
+              onChange={(e) => setAltText(e.target.value)}
+              className="h-11 rounded-2xl border-border bg-background"
+              placeholder="Service thumbnail"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="flex justify-end gap-3">
@@ -131,7 +263,7 @@ export default function ServiceForm({
           className="rounded-2xl"
           disabled={isSubmitting}
         >
-          Save Service
+          {service ? "Update Service" : "Save Service"}
         </Button>
       </div>
     </form>

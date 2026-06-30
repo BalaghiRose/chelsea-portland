@@ -13,6 +13,8 @@ export default function CaseStudyShowcaseCard({
   study,
   index,
 }: CaseStudyShowcaseCardProps) {
+  const imageSrc = study.thumbnailUrl ?? "/assets/images/casestudies1.jpg";
+
   return (
     <article className="group relative py-16 lg:py-28">
       {/* Background Number */}
@@ -26,8 +28,8 @@ export default function CaseStudyShowcaseCard({
         {/* Hero Image */}
         <div className="relative h-[420px] overflow-hidden rounded-[40px] lg:h-[680px]">
           <Image
-            src={study.image}
-            alt={study.title}
+            src={imageSrc}
+            alt={study.altText || study.title}
             fill
             priority={index === 0}
             className="object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -39,42 +41,15 @@ export default function CaseStudyShowcaseCard({
         {/* Floating Content */}
         <div className="relative -mt-28 px-6 lg:absolute lg:bottom-16 lg:left-16 lg:mt-0 lg:max-w-[560px]">
           <div className="rounded-[32px] border border-white/10 bg-white/95 p-8 shadow-[0_40px_90px_-30px_rgba(0,16,30,.25)] backdrop-blur-xl transition-all duration-500 group-hover:-translate-y-2 lg:p-10">
-            {/* Meta */}
-            <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-slate-500">
-              <span>{study.location}</span>
-
-              <span className="h-1 w-1 rounded-full bg-slate-400" />
-
-              <span>{study.sector}</span>
-            </div>
-
             {/* Title */}
-            <h2 className="mt-6 font-heading text-4xl leading-[1.05] text-primary lg:text-5xl">
+            <h2 className="font-heading text-4xl leading-[1.05] text-primary lg:text-5xl">
               {study.title}
             </h2>
 
             {/* Summary */}
             <p className="mt-6 text-[17px] leading-8 text-slate-600">
-              {study.summary}
+              {study.paras.split("\n").find((line) => line.trim())?.trim() ?? ""}
             </p>
-
-            {/* Services */}
-            <div className="mt-8 flex flex-wrap gap-3">
-              {study.services.slice(0, 3).map((service) => (
-                <span
-                  key={service}
-                  className="rounded-full border border-slate-200 px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-slate-600"
-                >
-                  {service}
-                </span>
-              ))}
-
-              {study.services.length > 3 && (
-                <span className="rounded-full border border-slate-200 px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-slate-500">
-                  +{study.services.length - 3}
-                </span>
-              )}
-            </div>
 
             {/* CTA */}
             <Link
