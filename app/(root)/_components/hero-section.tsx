@@ -6,7 +6,7 @@ export default function HeroSection() {
       {/* Background Image */}
 
       <Image
-        src="/assets/images/hero_section_image.jpg" // Replace with your image
+        src="/assets/images/hero_section_image.png" // Replace with your image
         alt="London"
         fill
         priority

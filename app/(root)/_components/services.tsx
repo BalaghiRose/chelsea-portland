@@ -56,7 +56,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="bg-[#F4F4F4] py-20 sm:py-24 lg:py-28 xl:py-32"
+      className="bg-[#F4F4F4] "
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Heading */}
