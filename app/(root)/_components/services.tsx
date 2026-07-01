@@ -80,7 +80,7 @@ export default function Services() {
               <div className="grid overflow-hidden bg-white lg:grid-cols-2">
                 {/* Left */}
 
-                <div className="flex flex-col justify-center p-10 lg:p-16">
+                <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-12 xl:p-16">
                   <Image
                     src={service.icon}
                     alt={`${service.title} icon`}
@@ -108,8 +108,11 @@ export default function Services() {
                     text-primary
                     px-8
                     py-4
+                    text-sm
+                    sm:text-base
                     uppercase
-                    tracking-wide
+                    tracking-[0.14em]
+                    sm:tracking-wide
                     transition
                     hover:border-[var(--color-primary)]
                     hover:bg-[var(--color-primary)]
@@ -126,7 +129,7 @@ export default function Services() {
 
                 {/* Right */}
 
-                <div className="relative min-h-[420px] lg:min-h-[680px]">
+                <div className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-[560px] xl:min-h-[680px]">
                   <Image
                     src={service.image}
                     alt={service.altText}
@@ -141,13 +144,15 @@ export default function Services() {
 
         {/* Navigation */}
 
-        <div className="mt-16 flex justify-center gap-5">
+        <div className="mt-12 sm:mt-16 flex justify-center gap-3 sm:gap-5">
           <button
             onClick={() => swiperRef.current?.slidePrev()}
             className="
               flex
-              h-16
-              w-16
+              h-12
+              w-12
+              sm:h-16
+              sm:w-16
               items-center
               justify-center
               border
@@ -161,15 +166,17 @@ export default function Services() {
               hover:[&_svg]:!text-white
             "
           >
-            <ChevronLeft size={24} />
+            <ChevronLeft size={20} />
           </button>
 
           <button
             onClick={() => swiperRef.current?.slideNext()}
             className="
               flex
-              h-16
-              w-16
+              h-12
+              w-12
+              sm:h-16
+              sm:w-16
               items-center
               justify-center
               border
@@ -183,7 +190,7 @@ export default function Services() {
               hover:[&_svg]:!text-white
             "
           >
-            <ChevronRight size={24} />
+            <ChevronRight size={20} />
           </button>
         </div>
       </div>

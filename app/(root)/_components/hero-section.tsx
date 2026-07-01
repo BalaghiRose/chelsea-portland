@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative h-screen overflow-hidden">
+    <section id="home" className="relative min-h-[100svh] overflow-hidden">
       {/* Background Image */}
 
       <Image
@@ -19,8 +19,8 @@ export default function HeroSection() {
 
       {/* Hero Content */}
 
-      <div className="relative z-10 flex h-full items-start justify-center px-6">
-        <div className="mx-auto mt-56 max-w-[980px] text-center">
+      <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-4 pt-24 sm:px-6 sm:pt-28 lg:pt-32">
+        <div className="mx-auto max-w-[980px] text-center">
           <h1
             className="
               section-heading text-white

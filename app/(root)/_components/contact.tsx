@@ -4,8 +4,8 @@ import { Mail, MapPin, Globe, ArrowRight } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="bg-[#F4F4F4] py-24 lg:py-36">
-      <div className="mx-auto grid max-w-[1500px] gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+    <section id="contact" className="bg-[#F4F4F4] py-20 sm:py-24 lg:py-32 xl:py-36">
+      <div className="mx-auto grid max-w-[1500px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:px-10">
         {/* LEFT */}
 
         <div className="flex flex-col justify-between">
@@ -22,7 +22,7 @@ export default function ContactSection() {
 
           {/* Contact Cards */}
 
-          <div className="mt-14 gap-4 ]">
+          <div className="mt-10 space-y-3 sm:mt-14 sm:space-y-4">
             <ContactCard
               icon={<MapPin size={22} />}
               value="Chelsea Portland House,
@@ -43,7 +43,7 @@ export default function ContactSection() {
 
         {/* FORM */}
 
-        <div className="border border-[#d9dee3] bg-white p-8 shadow-[0_40px_90px_-40px_rgba(0,16,30,.14)] lg:p-14">
+        <div className="border border-[#d9dee3] bg-white p-5 sm:p-8 shadow-[0_40px_90px_-40px_rgba(0,16,30,.14)] lg:p-12 xl:p-14">
           <p className="section-label text-secondary uppercase">Enquiry Form</p>
 
           <form className="mt-10 flex h-full flex-col">
@@ -61,7 +61,7 @@ export default function ContactSection() {
               <Input label="Telephone" placeholder="+44 123 456 789" />
 
               <div>
-                <label className="mb-3 block text-base uppercase tracking-[0.22em] text-primary">
+                <label className="mb-3 block text-base uppercase tracking-[0.16em] sm:tracking-[0.22em] text-primary">
                   Message
                 </label>
 
@@ -74,7 +74,7 @@ export default function ContactSection() {
             </div>
 
             <div className="mt-10">
-              <button className="group flex w-full items-center justify-center gap-3 border border-[#00101E] bg-primary py-5 text-lg uppercase tracking-[0.25em] text-white transition hover:bg-[#0B2138]">
+              <button className="group flex w-full items-center justify-center gap-3 border border-[#00101E] bg-primary px-4 py-4 sm:py-5 text-base sm:text-lg uppercase tracking-[0.14em] sm:tracking-[0.25em] text-white transition hover:bg-[#0B2138]">
                 Send Enquiry
                 <ArrowRight
                   size={18}
@@ -96,13 +96,13 @@ interface CardProps {
 
 function ContactCard({ icon, value }: CardProps) {
   return (
-    <div className="flex items-center gap-4  p-5 lg:p-6">
+    <div className="flex items-start gap-3 p-4 sm:items-center sm:gap-4 sm:p-5 lg:p-6">
       <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-secondary text-white">
         {icon}
       </div>
 
       <div>
-        <p className=" whitespace-pre-line leading-7 text-primary w-80">
+        <p className="whitespace-pre-line leading-7 text-primary w-full max-w-[34ch]">
           {value}
         </p>
       </div>
@@ -117,7 +117,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 function Input({ label, ...props }: InputProps) {
   return (
     <div>
-      <label className="mb-3 block text-base uppercase tracking-[0.22em] text-primary">
+      <label className="mb-3 block text-base uppercase tracking-[0.16em] sm:tracking-[0.22em] text-primary">
         {label}
       </label>
 

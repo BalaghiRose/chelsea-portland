@@ -18,9 +18,9 @@ export default function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="bg-[#F4F4F4] py-24 lg:py-32"
+      className="bg-[#F4F4F4] py-20 sm:py-24 lg:py-28 xl:py-32"
     >
-      <div className="mx-auto max-w-[1500px] px-6 lg:px-10">
+      <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-10">
 
         {/* Heading */}
 
@@ -47,7 +47,7 @@ export default function CaseStudies() {
 
         {/* Button */}
 
-        <div className="mt-14 flex justify-center">
+        <div className="mt-10 sm:mt-14 flex justify-center">
 
           <Link
             href="/case-studies"
@@ -57,12 +57,15 @@ export default function CaseStudies() {
             gap-4
             border
             border-[#00101E]
-            px-8
-            py-4
+            px-6
+            sm:px-8
+            py-3.5
+            sm:py-4
             text-sm
             text-[#00101E]
             uppercase
-            tracking-wider
+            tracking-[0.14em]
+            sm:tracking-wider
             transition
             hover:bg-[#00101E]
             hover:text-white
