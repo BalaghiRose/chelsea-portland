@@ -59,13 +59,6 @@ export default function SectionLayout({
             >
               {sectionLabel}
             </p>
-
-            <div
-              className={clsx(
-                "mt-3 h-[2px] w-10",
-                background === "primary" ? "bg-white" : "bg-primary",
-              )}
-            />
           </div>
 
           {/* Right */}

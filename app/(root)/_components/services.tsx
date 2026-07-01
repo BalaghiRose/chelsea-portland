@@ -59,15 +59,12 @@ export default function Services() {
       className="bg-[#F4F4F4] py-20 sm:py-24 lg:py-28 xl:py-32"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
-
         {/* Heading */}
 
         <div className="mb-16 text-center">
-
-          <p className="text-secondary section-label mx-auto">
+          <p className="text-secondary section-label section-label--center mx-auto">
             {(sectionSettings?.title ?? "Services").toUpperCase()}
           </p>
-
         </div>
 
         {/* Slider */}
@@ -80,13 +77,10 @@ export default function Services() {
         >
           {serviceItems.map((service) => (
             <SwiperSlide key={service.id}>
-
               <div className="grid overflow-hidden bg-white lg:grid-cols-2">
-
                 {/* Left */}
 
                 <div className="flex flex-col justify-center p-10 lg:p-16">
-
                   <Image
                     src={service.icon}
                     alt={`${service.title} icon`}
@@ -128,24 +122,19 @@ export default function Services() {
 
                     <ChevronRight size={18} />
                   </button>
-
                 </div>
 
                 {/* Right */}
 
                 <div className="relative min-h-[420px] lg:min-h-[680px]">
-
                   <Image
                     src={service.image}
                     alt={service.altText}
                     fill
                     className="object-cover"
                   />
-
                 </div>
-
               </div>
-
             </SwiperSlide>
           ))}
         </Swiper>
@@ -153,7 +142,6 @@ export default function Services() {
         {/* Navigation */}
 
         <div className="mt-16 flex justify-center gap-5">
-
           <button
             onClick={() => swiperRef.current?.slidePrev()}
             className="
@@ -197,9 +185,7 @@ export default function Services() {
           >
             <ChevronRight size={24} />
           </button>
-
         </div>
-
       </div>
     </section>
   );

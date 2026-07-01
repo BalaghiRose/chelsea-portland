@@ -23,7 +23,7 @@ export default function HeroSection() {
         <div className="mx-auto mt-56 max-w-[980px] text-center">
           <h1
             className="
-              section-heading
+              section-heading text-white
             "
           >
             A Trusted UK Presence For

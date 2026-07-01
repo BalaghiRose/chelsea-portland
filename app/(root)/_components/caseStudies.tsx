@@ -26,7 +26,7 @@ export default function CaseStudies() {
 
         <div className="mb-16 text-center">
 
-          <p className="section-label text-secondary mx-auto">
+          <p className="section-label section-label--center text-secondary mx-auto">
             {settings?.title ?? "Case Studies"}
           </p>
 
