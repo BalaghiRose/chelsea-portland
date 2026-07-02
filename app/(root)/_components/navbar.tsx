@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
@@ -9,32 +10,60 @@ const navigation = [
   { label: "HOME", href: "/" },
   { label: "ABOUT US", href: "/#about" },
   { label: "SERVICES", href: "/#services" },
-  { label: "CASE STUDIES", href: "/case-studies" },
+  { label: "CASE STUDIES", href: "/#case-studies" },
   { label: "CONTACT", href: "/#contact" },
 ];
 
+// Page-order of hash sections (top → bottom)
+const SECTION_IDS = ["about", "services", "case-studies", "contact"];
+
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState<string>("/");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Active section detection via scroll position
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveHref(pathname);
+      return;
+    }
+
+    const detect = () => {
+      const threshold = window.scrollY + window.innerHeight * 0.35;
+      let current = "/";
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= threshold) current = `/#${id}`;
+      }
+      setActiveHref(current);
+    };
+
+    detect();
+    window.addEventListener("scroll", detect, { passive: true });
+    return () => window.removeEventListener("scroll", detect);
+  }, [pathname]);
+
+  const isActive = (href: string) => href === activeHref;
 
   return (
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-md py-4"
+            ? "bg-white/20 backdrop-blur-xl shadow-sm border-b border-white/30 py-4"
             : "bg-transparent py-5 lg:py-7"
         }`}
       >
         <div className="mx-auto max-w-[1500px] px-5 lg:px-10">
-
           {/* Mobile & Tablet: simple flex row */}
           <div className="flex items-center justify-between lg:hidden">
             <Link href="/" className="flex items-center gap-3">
@@ -65,7 +94,6 @@ export default function Navbar() {
 
           {/* Desktop: 3-column grid */}
           <div className="hidden lg:grid lg:grid-cols-[220px_1fr_220px] lg:items-center">
-
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3">
               <Image
@@ -88,21 +116,21 @@ export default function Navbar() {
                   scrolled
                     ? "bg-transparent backdrop-blur-0 border-transparent"
                     : "bg-[#3569a9]/45 backdrop-blur-md border border-white/20"
-                } rounded-sm px-3 py-1`}
+                }  px-1 py-1`}
               >
                 <ul className="flex items-center">
-                  {navigation.map((item, index) => (
+                  {navigation.map((item) => (
                     <li key={item.label}>
                       <Link
                         href={item.href}
                         className={`text-[13px] tracking-wide transition-all duration-300 px-5 xl:px-6 py-3 block ${
-                          index === 0
+                          isActive(item.href)
                             ? scrolled
-                              ? "text-slate-900 font-medium"
-                              : "bg-white text-slate-900"
+                              ? "bg-[#00101e] text-white"
+                              : "bg-white text-[#00101e]"
                             : scrolled
-                            ? "text-slate-800 hover:text-black"
-                            : "text-white hover:bg-white/10"
+                              ? "text-slate-800 hover:bg-black/5 hover:text-black"
+                              : "text-white hover:bg-white/10"
                         }`}
                       >
                         {item.label}
@@ -121,7 +149,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-[60] bg-white transition-transform duration-500 ${
+        className={`fixed inset-0 z-[60] bg-[#00101e]/80 backdrop-blur-2xl transition-transform duration-500 ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -129,7 +157,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(false)}
             aria-label="Close menu"
-            className="text-slate-800"
+            className="text-white/80 transition hover:text-white"
           >
             <X size={30} />
           </button>
@@ -141,7 +169,11 @@ export default function Navbar() {
               key={item.label}
               href={item.href}
               onClick={() => setMobileOpen(false)}
-              className="text-xl tracking-widest text-slate-800 transition hover:text-blue-700"
+              className={`text-xl tracking-widest transition-all duration-300 ${
+                isActive(item.href)
+                  ? "text-white font-medium border-b border-white pb-0.5"
+                  : "text-white/60 hover:text-white"
+              }`}
             >
               {item.label}
             </Link>
