@@ -54,15 +54,12 @@ export default function Services() {
         }));
 
   return (
-    <section
-      id="services"
-      className="bg-[#F4F4F4] "
-    >
+    <section id="services" className="bg-[#F4F4F4] ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Heading */}
 
         <div className="mb-16 text-center">
-          <p className="text-secondary section-label mx-auto">
+          <p className="text-secondary section-label section-label--center ">
             {(sectionSettings?.title ?? "Services").toUpperCase()}
           </p>
         </div>
@@ -77,7 +74,7 @@ export default function Services() {
         >
           {serviceItems.map((service) => (
             <SwiperSlide key={service.id}>
-              <div className="grid overflow-hidden bg-white lg:grid-cols-2">
+              <div className="grid overflow-hidden bg-white lg:grid-cols-2 p-4">
                 {/* Image */}
 
                 <div className="order-1 relative min-h-[320px] sm:min-h-[420px] lg:order-2 lg:min-h-[560px] xl:min-h-[600px]">

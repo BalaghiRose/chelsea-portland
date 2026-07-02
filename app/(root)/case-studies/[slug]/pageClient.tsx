@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useQuery } from "convex/react";
+import { ChevronLeft } from "lucide-react";
 import { api } from "@/convex/_generated/api";
 import type { CaseStudy } from "../../utils/types";
+import CaseStudyCard from "../../utils/components/CaseStudyCard";
 
 export default function CaseStudyDetailClient() {
   const params = useParams<{ slug: string }>();
@@ -15,18 +17,22 @@ export default function CaseStudyDetailClient() {
     slug,
   }) as CaseStudy | null | undefined;
 
-  if (study === undefined) {
-    return null;
-  }
+  const allCaseStudies = useQuery(api.caseStudies.getCaseStudies);
+
+  if (study === undefined) return null;
 
   if (!study) {
     return (
-      <main className="bg-[#F0EFE9] px-6 py-24 text-center lg:px-10">
-        <h1 className="font-heading text-4xl text-primary">Case Study Not Found</h1>
-        <p className="mt-4 text-slate-600">The selected case study does not exist or may have been removed.</p>
+      <main className="bg-[#F4F4F4] px-6 py-24 text-center lg:px-10">
+        <h1 className="font-heading text-4xl text-primary">
+          Case Study Not Found
+        </h1>
+        <p className="mt-4 text-slate-600">
+          The selected case study does not exist or may have been removed.
+        </p>
         <Link
           href="/case-studies"
-          className="mt-8 inline-flex items-center justify-center rounded-full border border-primary px-6 py-3 text-sm uppercase tracking-[0.18em] text-primary transition hover:bg-primary hover:text-white"
+          className="mt-8 inline-flex items-center justify-center border border-primary px-6 py-3 text-sm uppercase tracking-[0.18em] text-primary transition hover:bg-primary hover:text-white"
         >
           Back To Case Studies
         </Link>
@@ -40,122 +46,84 @@ export default function CaseStudyDetailClient() {
     .map((line) => line.trim())
     .filter(Boolean);
 
+  const related = ((allCaseStudies ?? []) as CaseStudy[])
+    .filter((s) => s._id !== study._id)
+    .slice(0, 4);
+
   return (
-    <main className="bg-[#F0EFE9] text-[#0B1728]">
-      <div className="relative h-[420px] overflow-hidden bg-[#0B1728] lg:h-[520px]">
+    <main className="bg-[#F4F4F4] text-[#0B1728]">
+      {/* Full-width hero image */}
+      <div className="relative w-full h-[100vh] aspect-[16/7] overflow-hidden">
         <Image
           src={heroImage}
           alt={study.altText || study.title}
           fill
           priority
-          className="object-cover opacity-40"
+          className="object-cover"
         />
 
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(191,160,106,0.07) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(191,160,106,0.07) 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        <nav className="absolute left-6 top-5 flex items-center gap-2 text-[11px] tracking-wide text-white/40 lg:left-10">
-          <Link href="/" className="transition-colors hover:text-[#BFA06A]">
-            Home
-          </Link>
-          <span className="text-white/20">/</span>
+        {/* Back bar overlay */}
+        <div className="absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-black/60 to-transparent px-6 pb-10 pt-6 lg:px-10 ">
           <Link
-            href="/case-studies"
-            className="transition-colors hover:text-[#BFA06A]"
+            href="/"
+            className="inline-flex items-start gap-3 text-white/90 transition hover:text-white"
           >
-            Case Studies
+            <ChevronLeft
+              size={28}
+              strokeWidth={1.5}
+              className="mt-1 shrink-0"
+            />
+            <div className="w-full sm:w-1/2">
+              <span className="font-heading text-lg leading-tight tracking-tight font-light sm:text-xl lg:text-2xl">
+                {study.title}
+              </span>
+              <span className="mt-2 block h-[2px] w-[60px] bg-white" />
+            </div>
           </Link>
-          <span className="text-white/20">/</span>
-          <span className="text-white/30">Details</span>
-        </nav>
-
-        <div
-          className="absolute inset-x-0 bottom-0 px-6 pb-8 pt-24 lg:px-10"
-          style={{
-            background:
-              "linear-gradient(transparent, rgba(11,23,40,0.92) 55%)",
-          }}
-        >
-          <div className="mb-3 flex items-center gap-3">
-            <span className="block h-px w-7 bg-[#BFA06A]" />
-            <span className="text-[10px] uppercase tracking-[0.22em] text-[#BFA06A]">
-              Case Study
-            </span>
-          </div>
-
-          <h1 className="max-w-3xl text-2xl font-medium leading-snug tracking-tight text-[#F0EFE9] sm:text-3xl lg:text-4xl">
-            {study.title}
-          </h1>
         </div>
       </div>
 
-      <div
-        className="grid border-b border-[#BFA06A]/20 bg-[#0B1728]"
-        style={{
-          gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-        }}
-      >
-        {[
-          { label: "Slug", value: study.slug },
-          { label: "Featured", value: study.featured ? "Yes" : "No" },
-        ].map((item, i, arr) => (
-          <div
-            key={item.label}
-            className={`px-6 py-5 lg:px-8 ${i < arr.length - 1 ? "border-r border-white/[0.06]" : ""}`}
-          >
-            <p className="mb-1 text-[9px] uppercase tracking-[0.2em] text-[#BFA06A]/70">
-              {item.label}
-            </p>
-            <p className="text-sm leading-snug text-[#F0EFE9]">{item.value}</p>
-          </div>
-        ))}
-      </div>
+      {/* Details: title left, content right */}
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-10">
+          <div className="grid gap-10 lg:gap-16 lg:grid-cols-2">
+            {/* Left: label + title */}
+            <div className="lg:pt-2">
+              <h1 className="font-heading section-subheading text-primary">
+                {study.title}
+              </h1>
+              <span className="mt-4 block h-[2px] w-[60px] bg-[#af0040]" />
+            </div>
 
-      <div className="mx-auto grid max-w-[1100px] gap-10 px-6 py-12 lg:grid-cols-[minmax(0,1fr)_220px] lg:px-10 lg:py-16">
-        <div>
-          <div className="mb-10 rounded-xl border border-[#0B1728]/[0.08] bg-[#F8F7F3] px-6 py-5">
-            <p className="mb-1 text-[9px] uppercase tracking-[0.2em] text-[#6B7A8D]">
-              Project Overview
-            </p>
-            <p className="text-sm leading-[1.8] text-[#3D4B5C]">
-              {paragraphs[0] ?? ""}
-            </p>
-          </div>
-
-          <section>
-            <div className="mb-1 h-0.5 w-8 bg-[#BFA06A]" />
-            <h2 className="mb-4 border-b border-[#0B1728]/10 pb-3 text-xl font-medium text-[#0B1728]">
-              Details
-            </h2>
-
-            <div className="grid gap-4">
-              {paragraphs.map((p) => (
-                <p
-                  key={p}
-                  className="text-sm leading-[1.85] text-[#3D4B5C]"
-                >
+            {/* Right: paragraphs */}
+            <div className=" space-y-5">
+              {paragraphs.map((p, i) => (
+                <p key={i} className="paragraph text-slate-600">
                   {p}
                 </p>
               ))}
             </div>
-          </section>
+          </div>
         </div>
+      </section>
 
-        <aside className="h-fit rounded-xl bg-[#0B1728] p-6 lg:sticky lg:top-8">
-          <p className="mb-1 text-[9px] uppercase tracking-[0.2em] text-[#BFA06A]/70">
-            Case Study
-          </p>
-          <p className="text-sm leading-snug text-[#F0EFE9]">{study.title}</p>
-        </aside>
-      </div>
+      {/* Related case studies */}
+      {related.length > 0 && (
+        <section className="4">
+          <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-10">
+            <div className="mb-10 text-center">
+              <p className="section-label section-label--center text-secondary">
+                Related Case Studies
+              </p>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-2">
+              {related.map((s) => (
+                <CaseStudyCard key={s._id} study={s} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

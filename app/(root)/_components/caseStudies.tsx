@@ -21,7 +21,7 @@ export default function CaseStudies() {
         {/* Heading */}
 
         <div className="mb-16 text-center">
-          <p className="section-label text-secondary mx-auto">
+          <p className="section-label section-label--center text-secondary mx-auto uppercase">
             {settings?.title ?? "Case Studies"}
           </p>
         </div>

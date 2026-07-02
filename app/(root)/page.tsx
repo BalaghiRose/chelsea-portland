@@ -20,7 +20,7 @@ export default function HomePage() {
       <OverseasLawFirms/>
       <CaseStudies/>
       <ContactSection/>
-      <LocationSection image="/assets/images/locationMap.jpg"/>
+      <LocationSection />
       <Footer />
     </main>
   );

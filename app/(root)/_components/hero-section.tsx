@@ -26,14 +26,14 @@ export default function HeroSection() {
               section-heading text-white
             "
           >
-            A Trusted UK Presence For
+            A Trusted Uk Presence For
             <br />
             International Businesses And
             <br />
             Advisers.
           </h1>
 
-          <div className="mx-auto mt-10 h-[2px] w-14 bg-white/90" />
+          <div className="mx-auto mt-8 h-[2px] w-14 bg-white/90" />
         </div>
       </div>
     </section>

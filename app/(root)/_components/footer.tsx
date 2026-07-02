@@ -102,13 +102,13 @@ interface ContactCardProps {
 
 function ContactCard({ icon, value }: ContactCardProps) {
   return (
-    <div className="group flex gap-5">
+    <div className="group flex items-center gap-5">
       <div className="flex h-12 w-12 shrink-0 items-center justify-center  bg-secondary text-white transition-transform duration-300 group-hover:scale-105">
         {icon}
       </div>
 
       <div>
-        <p className="mt-2 whitespace-pre-line leading-7 text-white/80">
+        <p className=" whitespace-pre-line leading-7 text-white/80">
           {value}
         </p>
       </div>

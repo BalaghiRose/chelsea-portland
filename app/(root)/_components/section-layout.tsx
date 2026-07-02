@@ -63,7 +63,7 @@ export default function SectionLayout({
 
           {/* Right */}
 
-          <div className="lg:col-span-8 lg:col-start-7">
+          <div className="lg:col-span-8 lg:col-start-6">
             <h2
               className={clsx(
                 "font-heading section_about-heading",

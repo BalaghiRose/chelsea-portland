@@ -4,7 +4,10 @@ import { Mail, MapPin, Globe, ArrowRight } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="bg-[#F4F4F4] py-20 sm:py-24 lg:py-32 xl:py-36">
+    <section
+      id="contact"
+      className="bg-[#F4F4F4] py-20 sm:py-24 lg:py-32 xl:py-36"
+    >
       <div className="mx-auto grid max-w-[1500px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:px-10">
         {/* LEFT */}
 
@@ -43,7 +46,7 @@ export default function ContactSection() {
 
         {/* FORM */}
 
-        <div className="border border-[#d9dee3] bg-white p-5 sm:p-8 shadow-[0_40px_90px_-40px_rgba(0,16,30,.14)] lg:p-12 xl:p-14">
+        <div className="border border-[#d9dee3] bg-white p-5 sm:p-8 shadow-[0_40px_90px_-40px_rgba(0,16,30,.14)] lg:p-8 xl:p-10">
           <p className="section-label text-secondary uppercase">Enquiry Form</p>
 
           <form className="mt-10 flex h-full flex-col">
@@ -66,7 +69,7 @@ export default function ContactSection() {
                 </label>
 
                 <textarea
-                  rows={6}
+                  rows={3}
                   placeholder="Tell us about your project..."
                   className="w-full border-0 border-b border-slate-300 bg-transparent px-0 pb-4 pt-2 text-base outline-none transition focus:border-[#C59A5C] sm:text-lg"
                 />
@@ -123,7 +126,7 @@ function Input({ label, ...props }: InputProps) {
 
       <input
         {...props}
-        className="w-full border-0 border-b border-slate-300 bg-transparent px-0 pb-4 pt-2 text-base outline-none transition focus:border-[#C59A5C] sm:text-lg"
+        className="w-full border-0 border-b border-slate-300 bg-transparent px-0  text-sm outline-none transition focus:border-[#af0040] sm:text-lg"
       />
     </div>
   );

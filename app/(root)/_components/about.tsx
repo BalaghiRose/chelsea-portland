@@ -5,7 +5,7 @@ export default function AboutSection() {
     <SectionLayout
       id="about"
       sectionLabel="About Us"
-      title="A Trusted Uk Presence for Overseas Law Firms, Businesses and Private Clients"
+      title="A Trusted Uk Presence For Overseas Law Firms, Businesses And Private Clients"
       sectionLabelClassName="text-secondary section-label"
       titleClassName="font-bold"
       contentClassName="paragraph text-primary"
