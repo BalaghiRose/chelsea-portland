@@ -20,11 +20,22 @@ const SECTION_IDS = ["about", "services", "case-studies", "contact"];
 export default function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeHref, setActiveHref] = useState<string>("/");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
+    let lastY = window.scrollY;
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 60);
+      if (currentY > lastY && currentY > 80) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+      lastY = currentY;
+    };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -61,7 +72,7 @@ export default function Navbar() {
           scrolled
             ? "bg-white/20 backdrop-blur-xl shadow-sm border-b border-white/30 py-4"
             : "bg-transparent py-5 lg:py-7"
-        }`}
+        } ${visible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div className="mx-auto max-w-[1500px] px-5 lg:px-10">
           {/* Mobile & Tablet: simple flex row */}
@@ -123,7 +134,7 @@ export default function Navbar() {
                     <li key={item.label}>
                       <Link
                         href={item.href}
-                        className={`text-[13px] tracking-wide transition-all duration-300 px-5 xl:px-6 py-3 block ${
+                        className={`text-[13px] font-light tracking-wide transition-all duration-300 px-5 xl:px-6 py-3 block ${
                           isActive(item.href)
                             ? scrolled
                               ? "bg-[#00101e] text-white"
@@ -169,7 +180,7 @@ export default function Navbar() {
               key={item.label}
               href={item.href}
               onClick={() => setMobileOpen(false)}
-              className={`text-xl tracking-widest transition-all duration-300 ${
+              className={`text-xl font-light tracking-widest transition-all duration-300 ${
                 isActive(item.href)
                   ? "text-white font-medium border-b border-white pb-0.5"
                   : "text-white/60 hover:text-white"
