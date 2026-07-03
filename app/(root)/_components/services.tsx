@@ -101,7 +101,7 @@ export default function Services() {
                     {service.title}
                   </h2>
 
-                  <p className="mb-10 leading-6 text-gray-600">
+                  <p className="text-sm sm:text-base leading-5 sm:leading-6 mb-6 font-light text-primary ">
                     {service.description}
                   </p>
 
@@ -116,7 +116,7 @@ export default function Services() {
                     text-primary
                     px-8
                     py-4
-                    text-sm
+                    text-xs
                     sm:text-base
                     uppercase
                     tracking-[0.14em]
