@@ -18,7 +18,7 @@
   --color-secondary: #af0040;
   --font-body: "Outfit", Arial, sans-serif;
   --font-heading: "Agatho", "Cormorant Garamond", Georgia, serif;
-  --background: oklch(1 0 0);
+  --background: #F4F4F4;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -59,6 +59,7 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
+  background-color: var(--background);
 }
 
 h1,

@@ -34,7 +34,7 @@ export default function SectionLayout({
         "py-16 sm:py-16 lg:py-20 xl:py-24",
         background === "primary"
           ? "bg-primary text-white"
-          : "bg-[#F4F4F4] text-primary",
+          : " text-primary",
       )}
     >
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-10">

@@ -6,6 +6,7 @@ import HeroSection from "./_components/hero-section";
 import HowWeHelp from "./_components/how-we-help";
 import OverseasLawFirms from "./_components/law-firms";
 import LocationSection from "./_components/location";
+import ScrollReveal from "./_components/scroll-reveal";
 import ServicesSection from "./_components/services";
 import WhyUs from "./_components/why-us";
 
@@ -13,15 +14,15 @@ export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <AboutSection />
-      <WhyUs />
-      <HowWeHelp />
-      <ServicesSection />
-      <OverseasLawFirms/>
-      <CaseStudies/>
-      <ContactSection/>
-      <LocationSection />
-      <Footer />
+      <ScrollReveal><AboutSection /></ScrollReveal>
+      <ScrollReveal><WhyUs /></ScrollReveal>
+      <ScrollReveal><HowWeHelp /></ScrollReveal>
+      <ScrollReveal><ServicesSection /></ScrollReveal>
+      <ScrollReveal><OverseasLawFirms /></ScrollReveal>
+      <ScrollReveal><CaseStudies /></ScrollReveal>
+      <ScrollReveal><ContactSection /></ScrollReveal>
+      <ScrollReveal><LocationSection /></ScrollReveal>
+      <ScrollReveal><Footer /></ScrollReveal>
     </main>
   );
 }

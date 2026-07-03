@@ -41,26 +41,59 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Active section detection via scroll position
+  // Active section detection via IntersectionObserver
   useEffect(() => {
     if (pathname !== "/") {
       setActiveHref(pathname);
       return;
     }
 
-    const detect = () => {
-      const threshold = window.scrollY + window.innerHeight * 0.35;
-      let current = "/";
-      for (const id of SECTION_IDS) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= threshold) current = `/#${id}`;
+    // Track which sections are currently intersecting the top 30% of the viewport
+    const visibleIds = new Set<string>();
+
+    const pickActive = () => {
+      if (window.scrollY < 50) {
+        setActiveHref("/");
+        return;
       }
-      setActiveHref(current);
+      // Pick the last (deepest) visible section in page order
+      let found = "/";
+      for (const id of SECTION_IDS) {
+        if (visibleIds.has(id)) found = `/#${id}`;
+      }
+      setActiveHref(found);
     };
 
-    detect();
-    window.addEventListener("scroll", detect, { passive: true });
-    return () => window.removeEventListener("scroll", detect);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleIds.add(entry.target.id);
+          } else {
+            visibleIds.delete(entry.target.id);
+          }
+        });
+        pickActive();
+      },
+      // A section is "in view" when any part of it occupies the top 30% of the viewport
+      { rootMargin: "0px 0px -70% 0px" }
+    );
+
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    // Reset to HOME when scrolled back to top
+    const onScroll = () => {
+      if (window.scrollY < 50) setActiveHref("/");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, [pathname]);
 
   const isActive = (href: string) => href === activeHref;
