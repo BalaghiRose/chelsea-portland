@@ -18,11 +18,8 @@ const headingSerif = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chelseaportland.com"),
-  title: {
-    default: "Chelsea Portland House | UK Business Representation",
-    template: "%s | Chelsea Portland House",
-  },
+  metadataBase: new URL("https://chelsea-portland.com"),
+  title: "Chelsea Portland | Trusted UK Presence For Businesses",
   description:
     "Trusted UK commercial presence, local representation and practical support for overseas law firms, international businesses and investors. Based in London.",
   keywords: [
@@ -42,7 +39,7 @@ export const metadata: Metadata = {
   publisher: "Chelsea Portland House",
   category: "Business Services",
   openGraph: {
-    title: "Chelsea Portland House | UK Business Representation",
+    title: "Chelsea Portland | Trusted UK Presence For Businesses",
     description:
       "Trusted UK commercial presence and local representation for overseas law firms, international businesses and investors with UK interests. Based in London.",
     url: "https://chelseaportland.com",
@@ -54,16 +51,16 @@ export const metadata: Metadata = {
         url: "/assets/images/hero_section_image.png",
         width: 1200,
         height: 630,
-        alt: "Chelsea Portland House – Trusted UK Presence for International Businesses",
+        alt: "Chelsea Portland | Trusted UK Presence For Businesses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chelsea Portland House | UK Business Representation",
+    title: "Chelsea Portland | Trusted UK Presence For Businesses",
     description:
       "Trusted UK commercial presence and local representation for overseas law firms, international businesses and investors with UK interests. Based in London.",
-    images: ["/assets/images/hero_section_image.png"],
+    images: ["/asssets/images/hero_section_image.png"],
   },
   robots: {
     index: true,
@@ -77,7 +74,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://chelseaportland.com",
+    canonical: "https://chelsea- portland.com",
   },
 };
 
