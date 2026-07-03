@@ -50,21 +50,21 @@ export default function SectionLayout({
                 />
               </div>
             )}
-            <p
+            <h2
               className={clsx(
-                "text-sm uppercase tracking-[0.14em] sm:tracking-[0.18em]",
+                "text-sm section-label uppercase tracking-[0.14em] sm:tracking-[0.18em]",
                 background === "primary" ? "text-white" : "text-primary",
                 sectionLabelClassName,
               )}
             >
               {sectionLabel}
-            </p>
+            </h2>
           </div>
 
           {/* Right */}
 
           <div className="lg:col-span-8 lg:col-start-6">
-            <h2
+            <h3
               className={clsx(
                 "font-heading section_about-heading",
                 background === "primary" ? "text-white" : "text-slate-900",
@@ -72,7 +72,7 @@ export default function SectionLayout({
               )}
             >
               {title}
-            </h2>
+            </h3>
 
             <div
               className={clsx(

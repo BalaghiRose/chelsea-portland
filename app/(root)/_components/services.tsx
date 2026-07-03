@@ -59,9 +59,9 @@ export default function Services() {
         {/* Heading */}
 
         <div className="mb-16 text-center">
-          <p className="text-secondary section-label section-label--center ">
+          <h2 className="text-secondary section-label section-label--center ">
             {(sectionSettings?.title ?? "Services").toUpperCase()}
-          </p>
+          </h2>
         </div>
 
         {/* Slider */}
@@ -97,9 +97,9 @@ export default function Services() {
                     className="mb-6"
                   />
 
-                  <h2 className="font-heading mb-6 section-subheading text-primary">
+                  <h3 className="font-heading mb-6 section-subheading text-primary font-agatho">
                     {service.title}
-                  </h2>
+                  </h3>
 
                   <p className="text-sm sm:text-base leading-5 sm:leading-6 mb-6 font-light text-primary ">
                     {service.description}

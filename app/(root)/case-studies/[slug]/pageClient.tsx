@@ -112,9 +112,9 @@ export default function CaseStudyDetailClient() {
         <section className="4">
           <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-10">
             <div className="mb-10 text-center">
-              <p className="section-label section-label--center text-secondary">
+              <h2 className="section-label section-label--center text-secondary">
                 Related Case Studies
-              </p>
+              </h2>
             </div>
             <div className="grid gap-6 lg:grid-cols-2">
               {related.map((s) => (

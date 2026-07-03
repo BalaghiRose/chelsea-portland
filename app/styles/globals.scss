@@ -107,6 +107,10 @@ button {
   }
 }
 
+.font-agatho {
+  font-family: "Agatho", "Cormorant Garamond", Georgia, serif !important;
+}
+
 .section-subheading {
   font-size: 2rem;
   line-height: 1.1;
@@ -123,6 +127,7 @@ button {
 .section-label {
   position: relative;
   display: inline-block;
+  font-family: var(--font-body);
   font-size: 1.2rem;
   line-height: 1.2;
   font-weight: 300;

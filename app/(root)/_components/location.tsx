@@ -15,9 +15,9 @@ export default function LocationSection() {
 
         <div className="flex flex-col justify-between px-4 py-12 sm:px-6 sm:py-14 lg:px-0 lg:py-0">
           <div className="mx-auto w-full max-w-[520px] px-0 lg:px-14 lg:pt-20">
-            <h3 className="section-label text-secondary text-lg uppercase">
+            <h2 className="section-label text-secondary text-lg uppercase">
               London, United Kingdom
-            </h3>
+            </h2>
 
             <p className="mt-10 text-2xl leading-9 text-white/75">
               Located in west London and serving client with interests

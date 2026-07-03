@@ -13,7 +13,7 @@ export default function ContactSection() {
 
         <div className="flex flex-col justify-between">
           <div className="max-w-xl">
-            <p className="section-label text-secondary uppercase">Contact Us</p>
+            <h2 className="section-label text-secondary uppercase">Contact Us</h2>
 
             <p className="mt-6 max-w-lg text-base leading-8 text-slate-600 sm:text-lg">
               Whether you are entering the UK market, managing existing UK
@@ -47,7 +47,7 @@ export default function ContactSection() {
         {/* FORM */}
 
         <div className="border border-[#d9dee3] bg-white p-5 sm:p-8 shadow-[0_40px_90px_-40px_rgba(0,16,30,.14)] lg:p-8 xl:p-10">
-          <p className="section-label text-secondary uppercase">Enquiry Form</p>
+          <h3 className="section-label text-secondary uppercase">Enquiry Form</h3>
 
           <form className="mt-10 flex h-full flex-col">
             <div className="grid gap-8">

@@ -21,9 +21,9 @@ export default function CaseStudies() {
         {/* Heading */}
 
         <div className="mb-16 text-center">
-          <p className="section-label section-label--center text-secondary mx-auto uppercase">
+          <h2 className="section-label section-label--center text-secondary mx-auto uppercase">
             {settings?.title ?? "Case Studies"}
-          </p>
+          </h2>
         </div>
 
         {/* Grid */}
