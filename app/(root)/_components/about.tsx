@@ -6,9 +6,9 @@ export default function AboutSection() {
       id="about"
       sectionLabel="About Us"
       title="A Trusted Uk Presence For Overseas Law Firms, Businesses And Private Clients"
-      sectionLabelClassName="text-secondary section-label"
+      sectionLabelClassName="text-secondary section-label "
       titleClassName="font-bold"
-      contentClassName="paragraph text-primary"
+      contentClassName="paragraph text-primary max-sm:mt-6"
     >
       <p>
         Chelsea Portland House was established by Hasan Balaghi, a
