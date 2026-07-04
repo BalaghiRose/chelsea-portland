@@ -53,6 +53,7 @@ export default function Services() {
           altText: service.title,
         }));
 
+        
   return (
     <section id="services" className="bg-[#F4F4F4] ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
@@ -101,7 +102,7 @@ export default function Services() {
                     {service.title}
                   </h3>
 
-                  <p className="text-sm sm:text-base leading-5 sm:leading-6 mb-3 sm:mb-6 font-light text-primary">
+                  <p className="text-sm sm:text-base leading-5 sm:leading-6 mb-3 sm:mb-6 font-light text-primary line-clamp-3 sm:line-clamp-none">
                     {service.description}
                   </p>
 
