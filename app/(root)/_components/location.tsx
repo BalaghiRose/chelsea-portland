@@ -13,13 +13,13 @@ export default function LocationSection() {
       <div className="grid min-h-[620px] lg:min-h-[720px] lg:grid-cols-[38%_62%]">
         {/* LEFT */}
 
-        <div className="flex flex-col justify-between px-4 py-12 sm:px-6 sm:py-14 lg:px-0 lg:py-0">
+        <div className="flex flex-col justify-between px-4 py-8 sm:px-6 sm:py-14 lg:px-0 lg:py-0">
           <div className="mx-auto w-full max-w-[520px] px-0 lg:px-14 lg:pt-20">
             <h2 className="section-label text-secondary text-lg uppercase">
               London, United Kingdom
             </h2>
 
-            <p className="mt-3 mb-3 max-sm:paragraph sm:text-2xl font-thin sm:leading-9 text-white/75">
+            <p className="mt-3 mb-3 max-sm:paragraph sm:text-2xl font-light sm:leading-9 text-white">
               Located in west London and serving client with interests
               throughout the kingdom.
             </p>
