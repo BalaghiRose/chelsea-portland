@@ -88,13 +88,13 @@ export default function Services() {
 
                 {/* Content */}
 
-                <div className="order-2 flex flex-col justify-center p-6 sm:p-8 lg:order-1 lg:p-12 xl:p-16">
+                <div className="order-2 flex flex-col justify-center p-2 sm:p-8 lg:order-1 lg:p-12 xl:p-16">
                   <Image
                     src={service.icon}
                     alt={`${service.title} icon`}
                     width={80}
                     height={80}
-                    className="mb-3 sm:mb-6 max-sm:w-[60] "
+                    className=" sm:mb-6 max-sm:w-[60] "
                   />
 
                   <h3 className="font-heading mb-3 sm:mb-6 section-subheading text-primary font-agatho">
