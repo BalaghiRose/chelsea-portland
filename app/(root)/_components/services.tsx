@@ -114,7 +114,8 @@ export default function Services() {
                     border
                     border-[var(--color-primary)]
                     text-primary
-                    px-8
+                    max-sm:px-2
+                    sm:px-8
                     py-4
                     text-xs
                     sm:text-base
