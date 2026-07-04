@@ -36,7 +36,7 @@ export default function CaseStudyCard({ study }: Props) {
 
         <Link
           href={getCaseStudyHref(study.slug)}
-          className="flex w-fit shrink-0 items-center gap-3 border border-white/30 px-6 py-4 text-xs uppercase tracking-widest text-white transition hover:bg-white hover:text-black"
+          className="flex max-sm:w-full justify-center w-fit shrink-0 items-center gap-3 border border-white/30 px-6 py-4 text-xs uppercase tracking-widest text-white transition hover:bg-white hover:text-black"
         >
           Read More
           <ChevronRight size={16} />

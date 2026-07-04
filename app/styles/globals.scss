@@ -164,16 +164,6 @@ button {
     background-color: var(--color-secondary);
   }
 
-  @media (max-width: 767px) {
-    display: block;
-    width: 100%;
-    text-align: center;
-
-    &::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
 }
 
 .paragraph {

@@ -58,7 +58,7 @@ export default function Services() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Heading */}
 
-        <div className="mb-16 text-center">
+        <div className="mb-8 text-center">
           <h2 className="text-secondary section-label section-label--center ">
             {(sectionSettings?.title ?? "Services").toUpperCase()}
           </h2>
@@ -77,7 +77,7 @@ export default function Services() {
               <div className="grid overflow-hidden bg-white lg:grid-cols-2 p-4">
                 {/* Image */}
 
-                <div className="order-1 relative min-h-[320px] sm:min-h-[420px] lg:order-2 lg:min-h-[560px] xl:min-h-[600px]">
+                <div className="order-1 relative min-h-[220px] sm:min-h-[320px] lg:order-2 lg:min-h-[560px] xl:min-h-[600px]">
                   <Image
                     src={service.image}
                     alt={service.altText}
@@ -94,14 +94,14 @@ export default function Services() {
                     alt={`${service.title} icon`}
                     width={80}
                     height={80}
-                    className="mb-6"
+                    className="mb-3 sm:mb-6 max-sm:w-[60] "
                   />
 
-                  <h3 className="font-heading mb-6 section-subheading text-primary font-agatho">
+                  <h3 className="font-heading mb-3 sm:mb-6 section-subheading text-primary font-agatho">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm sm:text-base leading-5 sm:leading-6 mb-6 font-light text-primary ">
+                  <p className="text-sm sm:text-base leading-5 sm:leading-6 mb-3 sm:mb-6 font-light text-primary ">
                     {service.description}
                   </p>
 

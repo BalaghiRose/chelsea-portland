@@ -38,7 +38,7 @@ export default function SectionLayout({
       )}
     >
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-10">
-        <div className="grid gap-10 lg:gap-16 lg:grid-cols-12">
+        <div className="grid gap-3 lg:gap-16 lg:grid-cols-12">
           <div className="lg:pt-8 lg:col-span-4 lg:col-start-1">
             {logo && (
               <div className="mb-8">
@@ -76,7 +76,7 @@ export default function SectionLayout({
 
             <div
               className={clsx(
-                " sm:mt-8 space-y-6 sm:space-y-7 text-base sm:text-lg leading-8 sm:leading-9",
+                " mt-3 md:mt-8 space-y-3 sm:space-y-7 text-base sm:text-lg leading-8 sm:leading-9",
                 background === "primary" ? "text-white" : "text-slate-600",
                 contentClassName,
               )}

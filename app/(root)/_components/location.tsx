@@ -19,7 +19,7 @@ export default function LocationSection() {
               London, United Kingdom
             </h2>
 
-            <p className="mt-10 text-2xl leading-9 text-white/75">
+            <p className="mt-3 mb-3 max-sm:paragraph sm:text-2xl font-thin sm:leading-9 text-white/75">
               Located in west London and serving client with interests
               throughout the kingdom.
             </p>

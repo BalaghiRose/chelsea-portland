@@ -20,7 +20,7 @@ export default function CaseStudies() {
       <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-10">
         {/* Heading */}
 
-        <div className="mb-16 text-center">
+        <div className=" mb-8 sm:mb-16 text-center">
           <h2 className="section-label section-label--center text-secondary mx-auto uppercase">
             {settings?.title ?? "Case Studies"}
           </h2>

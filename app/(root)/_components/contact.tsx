@@ -25,7 +25,7 @@ export default function ContactSection() {
 
           {/* Contact Cards */}
 
-          <div className="mt-10 space-y-3 sm:mt-14 sm:space-y-4">
+          <div className="mt-6 space-y-3 sm:mt-14 sm:space-y-4">
             <ContactCard
               icon={<MapPin size={22} />}
               value="Chelsea Portland House,
@@ -99,7 +99,7 @@ interface CardProps {
 
 function ContactCard({ icon, value }: CardProps) {
   return (
-    <div className="flex items-center gap-3 p-4 sm:items-center sm:gap-4 sm:p-5 lg:p-6">
+    <div className="flex items-center gap-3  sm:items-center sm:gap-4 sm:py-3  lg:py-6">
       <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-secondary text-white">
         {icon}
       </div>
