@@ -13,13 +13,17 @@ export default function ContactSection() {
 
         <div className="flex flex-col justify-between">
           <div className="max-w-xl">
-            <h2 className="section-label text-secondary uppercase">Contact Us</h2>
+            <h2 className="section-label text-secondary uppercase">
+              Contact Us
+            </h2>
 
             <p className="mt-6 max-w-lg text-base leading-8 text-slate-600 sm:text-lg">
-              Whether you are entering the UK market, managing existing UK
-              interests, seeking local representation or requiring practical
-              support with a business, investment, project or commercial matter,
-              we welcome the opportunity to discuss your requirements.
+              For enquiries relating to UK business, investment, property or
+              commercial interests, please contact Chelsea Portland House.
+            </p>
+            <p className="mt-3 max-w-lg text-base leading-8 text-slate-600 sm:text-lg">
+              We welcome enquiries from overseas law firms, businesses,
+              investors and private clients.
             </p>
           </div>
 
@@ -47,7 +51,9 @@ export default function ContactSection() {
         {/* FORM */}
 
         <div className="border border-[#d9dee3] bg-white p-5 sm:p-8 shadow-[0_40px_90px_-40px_rgba(0,16,30,.14)] lg:p-8 xl:p-10">
-          <h3 className="section-label text-secondary uppercase">Enquiry Form</h3>
+          <h3 className="section-label text-secondary uppercase">
+            Enquiry Form
+          </h3>
 
           <form className="mt-10 flex h-full flex-col">
             <div className="grid gap-8">

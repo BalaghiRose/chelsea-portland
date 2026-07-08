@@ -111,13 +111,15 @@ export default function Services() {
                     inline-flex
                     w-fit
                     items-center
-                    gap-8
+                    gap-2
+                    sm:gap-8
                     border
                     border-[var(--color-primary)]
                     text-primary
                     max-sm:px-2
                     sm:px-8
                     py-4
+                    max-xs:text-[10px]
                     text-xs
                     sm:text-base
                     uppercase

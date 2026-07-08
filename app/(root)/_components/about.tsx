@@ -5,51 +5,53 @@ export default function AboutSection() {
     <SectionLayout
       id="about"
       sectionLabel="About Us"
-      title="A Trusted Uk Presence For Overseas Law Firms, Businesses And Private Clients"
+      title="Your Trusted Presence on the Ground in the UK"
       sectionLabelClassName="text-secondary section-label "
       titleClassName="font-bold"
       contentClassName="paragraph text-primary "
     >
       <p>
-        Chelsea Portland House was established by Hasan Balaghi, a
-        British-qualified lawyer and co-founder of Balaghi & Rose Solicitors,
-        after identifying a recurring challenge faced by overseas law firms,
-        international businesses, investors and private clients with interests
-        in the United Kingdom.
+        Chelsea Portland House was established by Hasan Balaghi, a British -
+        qualified lawyer and co - founder of Balaghi & Rose Solicitors, after
+        recognising that international clients often require more than legal and
+        professional advice alone.
       </p>
 
       <p>
-        Through his work with international clients, Hasan regularly encountered
-        situations where legal or professional advice alone was not sufficient.
-        Clients often required a trusted presence within the UK to facilitate
-        introductions, engage with stakeholders, attend meetings, oversee
-        projects and assist with commercial matters connected to the United
+        Through working with overseas businesses, investors and advisers, Hasan
+        identified a recurring challenge: clients could obtain expert advice,
+        but often lacked a trusted pres ence within the United Kingdom to
+        support, coordinate and assist with practical matters on the ground.
+      </p>
+
+      <p>Chelsea Portland House was created to bridge that gap.</p>
+
+      <p>
+        We support international clients seeking to establish, invest or expand
+        within the United Kingdom, as well as those who already have existing UK
+        business, investment, property or commercial interests requiring local
+        support.
+      </p>
+      <p>
+        Drawing on professional experience, commercial understanding and a
+        trusted UK network, Chelsea Portland House provides overseas l aw firms,
+        businesses, investors and private clients with a reliable point of
+        contact within the United Kingdom.
+      </p>
+      <p>
+        Our role is to understand each client’s objectives, coordinate with the
+        appropriate professionals, facilitate introductions, support communicati
+        on and provide practical involvement where UK - based assistance is
+        beneficial.Our role is to understand each client’s objectives,
+        coordinate with the appropriate professionals, facilitate introductions,
+        support communicati on and provide practical involvement where UK -
+        based assistance is beneficial.
+      </p>
+
+      <p>
+        We work alongside existing advisers and professionals, helping clients
+        turn international objectives into practical outcomes within the United
         Kingdom.
-      </p>
-
-      <p>
-        For many overseas law firms, their clients required practical support on
-        the ground in addition to legal advice. Likewise, international
-        businesses and investors frequently needed local representation to help
-        navigate opportunities, manage projects and maintain momentum across
-        their UK interests.
-      </p>
-      <p>
-        Chelsea Portland House was established to fulfil that role. Drawing upon
-        legal knowledge, commercial experience and an extensive network of
-        professional contacts, Chelsea Portland House provides overseas law
-        firms and their clients with a trusted UK presence, offering practical
-        support, commercial engagement and local representation where UK-based
-        involvement is required.
-      </p>
-      <p>
-        Today, Chelsea Portland House works alongside overseas law firms,
-        businesses, investors and private clients who are either entering the UK
-        market or managing existing UK interests. Whether supporting a business
-        expansion, investment, transaction, project or commercial matter, our
-        objective is simple: to provide the local presence, commercial insight
-        and practical assistance needed to help clients achieve their objectives
-        in the United Kingdom
       </p>
     </SectionLayout>
   );

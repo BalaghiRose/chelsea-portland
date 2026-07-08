@@ -11,38 +11,41 @@ export default function WhyUs() {
       logo={true}
     >
       <p>
-        Many overseas law firms, businesses, investors and private clients have
-        interests in the United Kingdom but do not require, or wish to maintain,
-        a permanent UK presence.
+        International businesses, investors and private clients often require
+        more than professional advice alone when dealing with matters connected
+        to the United Kingdom.
       </p>
 
       <p>
-        Whether managing existing UK business interests, property holdings,
-        investments, transactions, projects or expansion plans, clients often
-        require practical local support to complement the advice provided by
-        their professional advisers.
+        Whether establishing new opportunities or managing existing businesses,
+        property interests, investments, tra nsactions and projects, clients
+        frequently require practical support and trusted involvement on the
+        ground.
+      </p>
+
+      <p>Chelsea Portland House provides that solution.</p>
+      <p>
+        We act as a trusted UK representative, helping clients engage with
+        stakeholders, coordinate projects, facilitate introductions and manage
+        matters where local involvement is beneficial.
+      </p>
+      <p>
+        Our clients benefit from having a reliable point of contact in the
+        United Kingdom, supported by professional understanding, commercial
+        insight and an established network of trusted relationships. Our clients
+        benefit from having a reliable point of contact in the United Kingdom,
+        supported by professional understanding, commercial insight and an
+        established network of trusted relationships.
+      </p>
+      <p>
+        Working alongside clients and their advisers, we help maintain clear
+        communication, support progress and ensure matters receive the attention
+        required.
       </p>
 
       <p>
-        Chelsea Portland House provides a practical and cost-effective solution.
-        We act as a trusted UK presence, helping clients engage with
-        stakeholders, coordinate projects, attend meetings, facilitate
-        introductions and manage commercial matters that benefit from local
-        involvement.
-      </p>
-      <p>
-        Our clients value the ability to access trusted support on the ground
-        without the cost and commitment of establishing their own UK office or
-        developing an extensive network of local contacts.
-      </p>
-      <p>
-        By working closely with our clients and their advisers, we help ensure
-        communication remains clear, opportunities continue to progress and
-        matters are managed efficiently from inception through to completion.
-      </p>
-      <p>
-        For many of our clients, we become their trusted UK representative and
-        first point of contact for matters connected to the United Kingdom.
+        For many of our clients, Chelsea Portland House becomes their trusted
+        first poin t of contact for UK - related matters.
       </p>
     </SectionLayout>
   );
