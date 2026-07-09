@@ -109,8 +109,10 @@ export default function Services() {
                   <button
                     className="
                     inline-flex
-                    w-fit
+                    w-full
+                    sm:w-fit
                     items-center
+                    justify-around
                     gap-2
                     sm:gap-8
                     border
