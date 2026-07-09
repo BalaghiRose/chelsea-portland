@@ -2,6 +2,7 @@ export default function StructuredData() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": "https://chelsea-portland.com/#organization",
     name: "Chelsea Portland House",
     url: "https://chelsea-portland.com",
     logo: "https://chelsea-portland.com/assets/logos/chelsea_portland_logo_152x56px.svg",
@@ -13,10 +14,13 @@ export default function StructuredData() {
       "@type": "PostalAddress",
       streetAddress: "Chelsea Portland House, 47–49 Park Royal Road",
       addressLocality: "London",
-      postalCode: "NW10 7LG",
+      postalCode: "NW10 7LQ",
       addressCountry: "GB",
     },
-    areaServed: "United Kingdom",
+    areaServed: {
+      "@type": "Country",
+      name: "United Kingdom",
+    },
     contactPoint: [
       {
         "@type": "ContactPoint",
