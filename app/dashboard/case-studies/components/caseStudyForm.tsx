@@ -38,6 +38,9 @@ export default function CaseStudyForm({
   const [title, setTitle] = useState(caseStudy?.title ?? "");
   const [paras, setParas] = useState(caseStudy?.paras ?? "");
   const [altText, setAltText] = useState(caseStudy?.altText ?? "");
+  const [metaTitle, setMetaTitle] = useState(caseStudy?.metaTitle ?? "");
+  const [metaDescription, setMetaDescription] = useState(caseStudy?.metaDescription ?? "");
+  const [metaKeywords, setMetaKeywords] = useState(caseStudy?.metaKeywords?.join(", ") ?? "");
   const [featured, setFeatured] = useState(caseStudy?.featured ?? false);
   const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -53,6 +56,11 @@ export default function CaseStudyForm({
     ) {
       return;
     }
+
+    const parsedMetaKeywords = metaKeywords
+      .split(",")
+      .map((keyword) => keyword.trim())
+      .filter(Boolean);
 
     setIsSubmitting(true);
 
@@ -85,6 +93,9 @@ export default function CaseStudyForm({
           paras: paras.trim(),
           featured,
           altText: altText.trim(),
+          metaTitle: metaTitle.trim() || undefined,
+          metaDescription: metaDescription.trim() || undefined,
+          metaKeywords: parsedMetaKeywords.length ? parsedMetaKeywords : undefined,
           thumbnail: uploadedThumbnail,
         });
       } else {
@@ -94,6 +105,9 @@ export default function CaseStudyForm({
           paras: paras.trim(),
           featured,
           altText: altText.trim(),
+          metaTitle: metaTitle.trim() || undefined,
+          metaDescription: metaDescription.trim() || undefined,
+          metaKeywords: parsedMetaKeywords.length ? parsedMetaKeywords : undefined,
           thumbnail: uploadedThumbnail,
         });
       }
@@ -175,6 +189,37 @@ export default function CaseStudyForm({
               value={altText}
               onChange={(e) => setAltText(e.target.value)}
               className="h-11 rounded-2xl border-border bg-background"
+            />
+          </div>
+
+          <div>
+            <Label className="mb-2 block text-sm font-medium text-primary">Meta Title</Label>
+            <Input
+              value={metaTitle}
+              onChange={(e) => setMetaTitle(e.target.value)}
+              className="h-11 rounded-2xl border-border bg-background"
+              placeholder="Optional SEO title for search results"
+            />
+          </div>
+
+          <div>
+            <Label className="mb-2 block text-sm font-medium text-primary">Meta Description</Label>
+            <Textarea
+              value={metaDescription}
+              onChange={(e) => setMetaDescription(e.target.value)}
+              rows={4}
+              className="rounded-2xl border-border bg-background"
+              placeholder="Optional SEO description used in search snippets"
+            />
+          </div>
+
+          <div>
+            <Label className="mb-2 block text-sm font-medium text-primary">Meta Keywords</Label>
+            <Input
+              value={metaKeywords}
+              onChange={(e) => setMetaKeywords(e.target.value)}
+              className="h-11 rounded-2xl border-border bg-background"
+              placeholder="Optional comma-separated keywords"
             />
           </div>
 

@@ -191,22 +191,14 @@ United Kingdom"
 
                   <article>
                     <h2 className="text-2xl ">Contact</h2>
-                    <p>
-                      Chelsea Portland House
-                    </p>
+                    <p>Chelsea Portland House</p>
                     <p></p>
-                      47–49 Park Royal Road
-                      <br />
-                    <p>
-                      London, NW10 7LQ
-                    </p>
-                    <p>
-                      United Kingdom  
-                    </p>
+                    47–49 Park Royal Road
                     <br />
-                    <p>
-                      partnership@chelsea-portland.com
-                    </p>
+                    <p>London, NW10 7LQ</p>
+                    <p>United Kingdom</p>
+                    <br />
+                    <p>partnership@chelsea-portland.com</p>
                   </article>
                 </div>
                 <DialogFooter className="mt-6" showCloseButton />
@@ -216,27 +208,117 @@ United Kingdom"
             <Dialog>
               <DialogTrigger asChild>
                 <button type="button" className="transition hover:text-white">
-                  Terms of Service
+                  Terms of Use
                 </button>
               </DialogTrigger>
-              <DialogContent className="rounded-3xl max-w-3xl">
+              <DialogContent className="rounded-3xl max-w-3xl  max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle>Terms of Service</DialogTitle>
-                  <DialogDescription>
-                    By using this site, you agree to our terms for content
-                    usage, enquiries, and service delivery.
-                  </DialogDescription>
+                  <DialogDescription>Last updated: July 2026</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4 text-sm text-slate-900 dark:text-slate-100">
-                  <p>
-                    We aim to provide accurate content and responsive support.
-                    Our services are subject to availability, and we reserve the
-                    right to update these terms as needed.
-                  </p>
-                  <p>
-                    Any enquiries or contracts entered through this site are
-                    subject to applicable laws and standard professional terms.
-                  </p>
+                  <article>
+                    <h2 className="text-2xl ">Introduction</h2>
+                    <p>Welcome to the Chelsea Portland House website.</p>
+                    <p>
+                      By accessing and using this website, you agree to these
+                      Terms of Use.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2 className="text-2xl ">Website Information</h2>
+                    <p>
+                      The content provided on this website is for general
+                      information purposes only.
+                    </p>
+                    <p>
+                      While we aim to keep informa tion accurate and up to date,
+                      Chelsea Portland House does not guarantee that all
+                      information is complete, current or suitable for every
+                      circumstance.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2 className="text-2xl ">No Professional Advice</h2>
+                    <p>
+                      Information on this website does not constitute legal,
+                      financial, tax, investment or other professional advice.
+                    </p>
+                    <p>
+                      Clients should obtain advice from appropriately qualified
+                      professionals where required.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2 className="text-2xl ">Our Services</h2>
+                    <p>
+                      Chelsea Portland House provides practical support,
+                      coordination, introductions and UK - based assistance for
+                      clients with inter ests connected to the United Kingdom.
+                    </p>
+                    <p>
+                      Any engagement with Chelsea Portland House will be subject
+                      to separate agreed terms.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2 className="text-2xl ">
+                      Third Party Links and Introductions
+                    </h2>
+                    <p>
+                      Our website or services may include references or
+                      introductions to independent third parties.
+                    </p>
+                    <p>
+                      Che lsea Portland House is not responsible for the
+                      content, services or actions of third parties.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2 className="text-2xl ">Intellectual Property</h2>
+                    <p>
+                      All website content, branding, text and materials belong
+                      to Chelsea Portland House unless otherwise stated.
+                    </p>
+                    <p>
+                      Content may not be copied or rep roduced without
+                      permission.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2 className="text-2xl ">Liability</h2>
+                    <p>
+                      Chelsea Portland House is not responsible for losses
+                      arising from reliance on general website information.
+                    </p>
+                    <p>
+                      Nothing in these Terms excludes liability where it cannot
+                      legally be excluded.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2 className="text-2xl ">Changes</h2>
+                    <p>We may update these Term s of Use from time to time</p>
+                  </article>
+
+                  <article>
+                    <h2 className="text-2xl ">Contact</h2>
+                    <p>Chelsea Portland House</p>
+                    <p></p>
+                    47–49 Park Royal Road
+                    <br />
+                    <p>London, NW10 7LQ</p>
+                    <p>United Kingdom</p>
+                    <br />
+                    <p>partnership@chelsea-portland.com</p>
+                  </article>
                 </div>
                 <DialogFooter className="mt-6" showCloseButton />
               </DialogContent>

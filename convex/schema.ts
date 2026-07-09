@@ -41,6 +41,12 @@ export default defineSchema({
 
     altText: v.string(),
 
+    metaTitle: v.optional(v.string()),
+
+    metaDescription: v.optional(v.string()),
+
+    metaKeywords: v.optional(v.array(v.string())),
+
     sortOrder: v.optional(v.number()),
 
     createdAt: v.number(),

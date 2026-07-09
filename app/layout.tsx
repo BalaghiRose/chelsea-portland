@@ -3,6 +3,7 @@ import { Outfit, Cormorant_Garamond, Inter } from "next/font/google";
 import "./styles/globals.scss";
 import { cn } from "@/lib/utils";
 import AppConvexProvider from "./convex-provider";
+import StructuredData from "./(root)/_components/structured-data";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     title: "Chelsea Portland | Trusted UK Presence For Businesses",
     description:
       "Trusted UK commercial presence and local representation for overseas law firms, international businesses and investors with UK interests. Based in London.",
-    url: "https://chelseaportland.com",
+    url: "https://chelsea-portland.com",
     siteName: "Chelsea Portland House",
     type: "website",
     locale: "en_GB",
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
     title: "Chelsea Portland | Trusted UK Presence For Businesses",
     description:
       "Trusted UK commercial presence and local representation for overseas law firms, international businesses and investors with UK interests. Based in London.",
-    images: ["/asssets/images/hero_section_image.png"],
+    images: ["/assets/images/hero_section_image.png"],
   },
   robots: {
     index: true,
@@ -74,7 +75,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://chelsea- portland.com",
+    canonical: "https://chelsea-portland.com",
   },
 };
 
@@ -89,6 +90,7 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", outfit.variable, headingSerif.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
+        <StructuredData />
         <AppConvexProvider>{children}</AppConvexProvider>
       </body>
     </html>

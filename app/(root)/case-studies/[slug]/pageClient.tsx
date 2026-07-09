@@ -13,9 +13,10 @@ export default function CaseStudyDetailClient() {
   const params = useParams<{ slug: string }>();
   const slug = params.slug;
 
-  const study = useQuery(api.caseStudies.getCaseStudyBySlug, {
-    slug,
-  }) as CaseStudy | null | undefined;
+  const study = useQuery(
+    api.caseStudies.getCaseStudyBySlug,
+    slug ? { slug } : "skip"
+  ) as CaseStudy | null | undefined;
 
   const allCaseStudies = useQuery(api.caseStudies.getCaseStudies);
 

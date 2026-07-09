@@ -29,12 +29,17 @@ export const getCaseStudies = query({
 
 export const getCaseStudyBySlug = query({
   args: {
-    slug: v.string(),
+    slug: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
+    const { slug } = args;
+    if (!slug) {
+      return null;
+    }
+
     const study = await ctx.db
       .query("caseStudies")
-      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .withIndex("by_slug", (q) => q.eq("slug", slug))
       .unique();
 
     if (!study) {
@@ -79,6 +84,9 @@ export const createCaseStudy = mutation({
     featured: v.boolean(),
     thumbnail: v.optional(v.id("_storage")),
     altText: v.string(),
+    metaTitle: v.optional(v.string()),
+    metaDescription: v.optional(v.string()),
+    metaKeywords: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {
     const existing = await ctx.db
@@ -115,6 +123,9 @@ export const updateCaseStudy = mutation({
     featured: v.boolean(),
     thumbnail: v.optional(v.id("_storage")),
     altText: v.string(),
+    metaTitle: v.optional(v.string()),
+    metaDescription: v.optional(v.string()),
+    metaKeywords: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {
     const { id, ...data } = args;
@@ -140,6 +151,9 @@ export const updateCaseStudy = mutation({
       paras: string;
       featured: boolean;
       altText: string;
+      metaTitle?: string;
+      metaDescription?: string;
+      metaKeywords?: string[];
       thumbnail?: typeof args.thumbnail;
       updatedAt: number;
     } = {
@@ -153,6 +167,15 @@ export const updateCaseStudy = mutation({
 
     if (data.thumbnail !== undefined) {
       patchData.thumbnail = data.thumbnail;
+    }
+    if (data.metaTitle !== undefined) {
+      patchData.metaTitle = data.metaTitle;
+    }
+    if (data.metaDescription !== undefined) {
+      patchData.metaDescription = data.metaDescription;
+    }
+    if (data.metaKeywords !== undefined) {
+      patchData.metaKeywords = data.metaKeywords;
     }
 
     await ctx.db.patch(id, patchData);

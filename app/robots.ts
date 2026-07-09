@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/private/", "/_next/"],
     },
-    sitemap: "https://chelseaportland.com/sitemap.xml",
+    sitemap: "https://chelsea-portland.com/sitemap.xml",
   };
 }

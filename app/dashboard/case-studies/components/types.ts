@@ -10,6 +10,9 @@ export interface DashboardCaseStudy {
   thumbnail?: Id<"_storage">;
   thumbnailUrl: string | null;
   altText: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string[];
   sortOrder?: number;
   createdAt: number;
   updatedAt: number;
