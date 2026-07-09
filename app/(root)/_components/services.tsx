@@ -106,7 +106,7 @@ export default function Services() {
                     {service.description}
                   </p>
 
-                  <button
+                  {/* <button
                     className="
                     inline-flex
                     w-full
@@ -138,7 +138,7 @@ export default function Services() {
                     {service.button}
 
                     <ChevronRight size={18} />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </SwiperSlide>
@@ -147,7 +147,7 @@ export default function Services() {
 
         {/* Navigation */}
 
-        <div className="mt-4 sm:mt-6 flex justify-center gap-3 sm:gap-5">
+        <div className=" sm:mt-6 flex justify-center gap-3 sm:gap-5">
           <button
             onClick={() => swiperRef.current?.slidePrev()}
             className="

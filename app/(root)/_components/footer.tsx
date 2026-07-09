@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, MapPin } from "lucide-react";
+import { LineStyle, Mail, MapPin } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -80,13 +80,13 @@ United Kingdom"
 
         {/* Bottom */}
 
-        <div className="flex flex-col gap-8 text-sm text-white/60 lg:flex-row lg:items-center lg:justify-between">
+        <div className="text-sm text-white/60">
           <p>
             © {new Date().getFullYear()} Chelsea Portland House. All rights
             reserved.
           </p>
 
-          <div className="flex gap-10 ">
+          <div className="flex gap-6 mt-4">
             <Dialog>
               <DialogTrigger asChild>
                 <button type="button" className="transition hover:text-white">
@@ -205,6 +205,8 @@ United Kingdom"
               </DialogContent>
             </Dialog>
 
+            <p className="text-white/60">|</p>
+
             <Dialog>
               <DialogTrigger asChild>
                 <button type="button" className="transition hover:text-white">
@@ -310,11 +312,11 @@ United Kingdom"
 
                   <article>
                     <h2 className="text-2xl ">Contact</h2>
-                    <p>Chelsea Portland House</p>
+                    <p>Chelsea Portland House,</p>
                     <p></p>
-                    47–49 Park Royal Road
+                    47–49 Park Royal Road,
                     <br />
-                    <p>London, NW10 7LQ</p>
+                    <p>London, NW10 7LG,</p>
                     <p>United Kingdom</p>
                     <br />
                     <p>partnership@chelsea-portland.com</p>

@@ -33,7 +33,7 @@ export default function ContactSection() {
             <ContactCard
               icon={<MapPin size={22} />}
               value="Chelsea Portland House,
-47–49 Park Royal Road, London NW10 7LQ, United Kingdom"
+47–49 Park Royal Road, London, NW10 7LG, United Kingdom."
             />
 
             <ContactCard
@@ -57,17 +57,13 @@ export default function ContactSection() {
 
           <form className="mt-10 flex h-full flex-col">
             <div className="grid gap-8">
-              <Input label="Full Name" placeholder="John Smith" />
+              <Input label="Full Name" />
 
-              <Input label="Organisation" placeholder="Chelsea Portland Ltd." />
+              <Input label="Organisation" />
 
-              <Input
-                label="Email Address"
-                placeholder="john@example.com"
-                type="email"
-              />
+              <Input label="Email Address" type="email" />
 
-              <Input label="Telephone" placeholder="+44 123 456 789" />
+              <Input label="Telephone" />
 
               <div>
                 <label className="mb-3 block text-base uppercase tracking-[0.16em] sm:tracking-[0.22em] text-primary">
@@ -76,7 +72,6 @@ export default function ContactSection() {
 
                 <textarea
                   rows={3}
-                  placeholder="Tell us about your project..."
                   className="w-full border-0 border-b border-slate-300 bg-transparent px-0 pb-4 pt-2 text-base outline-none transition focus:border-[#C59A5C] sm:text-lg"
                 />
               </div>

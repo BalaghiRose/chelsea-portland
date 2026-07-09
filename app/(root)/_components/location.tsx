@@ -20,8 +20,8 @@ export default function LocationSection() {
             </h2>
 
             <p className="mt-3 mb-3 max-sm:paragraph sm:text-2xl font-light sm:leading-9 text-white">
-              Located in west London and serving client with interests
-              throughout the kingdom.
+              Located in North West London and supporting clients with interests
+              across the United Kingdom.
             </p>
           </div>
           <div className="mx-auto w-full max-w-[520px] pb-4 lg:px-14 lg:pb-20">

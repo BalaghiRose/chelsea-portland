@@ -26,7 +26,9 @@ export default function HeroSection() {
               section-heading text-white
             "
           >
-            A Trusted Uk Presence For International Businesses And Advisers.
+            BEYOND
+            <br />
+              LEGAL SERVICES
           </h1>
 
           <div className="mx-auto mt-8 h-[2px] w-14 bg-white/90" />
