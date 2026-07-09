@@ -15,7 +15,7 @@ export default function CaseStudyDetailClient() {
 
   const study = useQuery(
     api.caseStudies.getCaseStudyBySlug,
-    slug ? { slug } : "skip"
+    slug ? { slug } : "skip",
   ) as CaseStudy | null | undefined;
 
   const allCaseStudies = useQuery(api.caseStudies.getCaseStudies);
@@ -54,15 +54,16 @@ export default function CaseStudyDetailClient() {
   return (
     <main className="bg-[#F4F4F4] text-[#0B1728]">
       {/* Full-width hero image */}
-      <div className="relative w-full h-[100vh] aspect-[16/7] overflow-hidden">
+      <div className="relative w-full h-[40svh] sm:h-[60svh] lg:h-[100svh] min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] lg:max-h-[900px] overflow-hidden">
         <Image
           src={heroImage}
           alt={study.altText || study.title}
           fill
           priority
+          sizes="100vw"
+          quality={90}
           className="object-cover"
         />
-
         {/* Back bar overlay */}
         <div className="absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-black/60 to-transparent px-6 pb-10 pt-6 lg:px-10 ">
           <Link
