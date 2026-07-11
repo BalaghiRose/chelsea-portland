@@ -1,8 +1,96 @@
 "use client";
 
-import { Mail, MapPin, Globe, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { Mail, MapPin, Globe, ArrowRight, AlertCircle } from "lucide-react";
+
+// Common personal/free email providers we don't accept
+const PERSONAL_EMAIL_DOMAINS = [
+  "gmail.com",
+  "googlemail.com",
+  "yahoo.com",
+  "yahoo.co.uk",
+  "outlook.com",
+  "hotmail.com",
+  "hotmail.co.uk",
+  "live.com",
+  "msn.com",
+  "aol.com",
+  "icloud.com",
+  "me.com",
+  "mac.com",
+  "protonmail.com",
+  "proton.me",
+  "mail.com",
+  "gmx.com",
+  "zoho.com",
+  "yandex.com",
+  "rediffmail.com",
+];
+
+function isBusinessEmail(email: string): boolean {
+  const trimmed = email.trim().toLowerCase();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(trimmed)) return false;
+
+  const domain = trimmed.split("@")[1];
+  return !PERSONAL_EMAIL_DOMAINS.includes(domain);
+}
 
 export default function ContactSection() {
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [touched, setTouched] = useState(false);
+
+  const validateEmail = (value: string) => {
+    if (!value.trim()) {
+      setEmailError("");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(value.trim())) {
+      setEmailError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!isBusinessEmail(value)) {
+      setEmailError(
+        "Please use your business email address to submit your enquiry."
+      );
+      return;
+    }
+
+    setEmailError("");
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    if (touched) validateEmail(value);
+  };
+
+  const handleEmailBlur = () => {
+    setTouched(true);
+    validateEmail(email);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setTouched(true);
+    validateEmail(email);
+
+    if (!email.trim() || !isBusinessEmail(email)) {
+      setEmailError(
+        "Please use your business email address to submit your enquiry."
+      );
+      return;
+    }
+
+    // TODO: proceed with actual submission (API call, etc.)
+    console.log("Form is valid, submitting...");
+  };
+
   return (
     <section
       id="contact"
@@ -55,13 +143,40 @@ export default function ContactSection() {
             Enquiry Form
           </h3>
 
-          <form className="mt-10 flex h-full flex-col">
+          <form className="mt-10 flex h-full flex-col" onSubmit={handleSubmit} noValidate>
             <div className="grid gap-8">
-              <Input label="Full Name" />
+              <Input label="Full Name" required />
 
               <Input label="Organisation" />
 
-              <Input label="Email Address" type="email" />
+              <div>
+                <label className="mb-3 block text-base uppercase tracking-[0.16em] sm:tracking-[0.22em] text-primary">
+                  Email Address
+                </label>
+
+                <input
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  onBlur={handleEmailBlur}
+                  required
+                  aria-invalid={!!emailError}
+                  aria-describedby={emailError ? "email-error" : undefined}
+                  className={`w-full border-0 border-b bg-transparent px-0 pb-1 text-sm outline-none transition focus:border-[#af0040] sm:text-lg ${
+                    emailError ? "border-red-500" : "border-slate-300"
+                  }`}
+                />
+
+                {emailError && (
+                  <p
+                    id="email-error"
+                    className="mt-2 flex items-start gap-1.5 text-sm text-red-600"
+                  >
+                    <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                    <span>{emailError}</span>
+                  </p>
+                )}
+              </div>
 
               <Input label="Telephone" />
 
@@ -78,7 +193,10 @@ export default function ContactSection() {
             </div>
 
             <div className="mt-10">
-              <button className="group flex w-full items-center justify-center gap-3 border border-[#00101E] bg-primary px-4 py-4 sm:py-5 text-base sm:text-lg uppercase tracking-[0.14em] sm:tracking-[0.25em] text-white transition hover:bg-[#0B2138]">
+              <button
+                type="submit"
+                className="group flex w-full items-center justify-center gap-3 border border-[#00101E] bg-primary px-4 py-4 sm:py-5 text-base sm:text-lg uppercase tracking-[0.14em] sm:tracking-[0.25em] text-white transition hover:bg-[#0B2138]"
+              >
                 Send Enquiry
                 <ArrowRight
                   size={18}

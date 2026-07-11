@@ -19,7 +19,7 @@ export default function CaseStudiesPageClient() {
   return (
     <main className="min-h-screen bg-[#00101e] text-white">
       {/* Hero */}
-      <section className="border-b border-white/10">
+      {/* <section className="border-b border-white/10">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
           <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-white/60">
             <Link href="/" className="hover:text-white">
@@ -59,16 +59,16 @@ export default function CaseStudiesPageClient() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Featured */}
       {featuredStudy && (
         <section
           id="featured"
-          className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+          className="mx-auto max-w-7xl px-5 pt-28 sm:px-6 lg:px-8"
         >
-          <div className="mb-10">
-            <h2 className="text-3xl font-semibold">Featured Case Study</h2>
+          <div className="">
+            <h2 className="section-heading">Featured Case Study</h2>
 
             <p className="mt-2 text-white/60">
               A highlighted project demonstrating our approach and outcomes.
@@ -81,13 +81,7 @@ export default function CaseStudiesPageClient() {
 
       {/* All Case Studies */}
       <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-6 lg:px-8">
-        <div className="mb-10">
-          <h2 className="text-3xl font-semibold">All Case Studies</h2>
-
-          <p className="mt-2 text-white/60">
-            Explore the complete collection of our work.
-          </p>
-        </div>
+       
 
         {remainingStudies.length > 0 ? (
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
