@@ -53,14 +53,13 @@ export default function Services() {
           altText: service.title,
         }));
 
-        
   return (
-    <section id="services" className="bg-[#F4F4F4] ">
+    <section id="services" className="bg-[#F4F4F4] py-8 sm:py-16 lg:py-24 xl:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Heading */}
 
-        <div className="mb-8 text-center">
-          <h2 className="text-secondary section-label section-label--center ">
+        <div className="mb-4 text-center sm:mb-8">
+          <h2 className="text-secondary section-label section-label--center">
             {(sectionSettings?.title ?? "Services").toUpperCase()}
           </h2>
         </div>
@@ -75,10 +74,10 @@ export default function Services() {
         >
           {serviceItems.map((service) => (
             <SwiperSlide key={service.id}>
-              <div className="grid overflow-hidden bg-white lg:grid-cols-2 p-4">
+              <div className="grid overflow-hidden bg-white lg:grid-cols-2">
                 {/* Image */}
 
-                <div className="order-1 relative min-h-[220px] sm:min-h-[320px] lg:order-2 lg:min-h-[560px] xl:min-h-[600px]">
+                <div className="order-1 relative min-h-[160px] sm:min-h-[320px] lg:order-2 lg:min-h-[560px] xl:min-h-[600px]">
                   <Image
                     src={service.image}
                     alt={service.altText}
@@ -89,20 +88,20 @@ export default function Services() {
 
                 {/* Content */}
 
-                <div className="order-2 flex flex-col justify-center p-2 sm:p-8 lg:order-1 lg:p-12 xl:p-16">
+                <div className="order-2 flex flex-col justify-center p-3 sm:p-8 lg:order-1 lg:p-12 xl:p-16">
                   <Image
                     src={service.icon}
                     alt={`${service.title} icon`}
                     width={80}
                     height={80}
-                    className=" sm:mb-6 max-sm:w-[60] "
+                    className="mb-2 w-10 sm:mb-6 sm:w-20"
                   />
 
-                  <h3 className="font-heading mb-3 sm:mb-6 section-subheading text-primary font-agatho">
+                  <h3 className="font-heading mb-1.5 sm:mb-6 section_service-subheading text-primary font-agatho">
                     {service.title}
                   </h3>
 
-                  <p className="text-sm sm:text-base leading-5 sm:leading-6 mb-3 sm:mb-6 font-light text-primary line-clamp-3 sm:line-clamp-none">
+                  <p className="mb-0 text-sm font-light leading-5 text-primary line-clamp-3 sm:text-base sm:leading-6 sm:line-clamp-none">
                     {service.description}
                   </p>
 
@@ -147,13 +146,13 @@ export default function Services() {
 
         {/* Navigation */}
 
-        <div className=" sm:mt-6 flex justify-center gap-3 sm:gap-5">
+        <div className="mt-2 flex justify-center gap-2 sm:mt-6 sm:gap-5">
           <button
             onClick={() => swiperRef.current?.slidePrev()}
             className="
               flex
-              h-12
-              w-12
+              h-10
+              w-10
               sm:h-16
               sm:w-16
               items-center
@@ -176,8 +175,8 @@ export default function Services() {
             onClick={() => swiperRef.current?.slideNext()}
             className="
               flex
-              h-12
-              w-12
+              h-10
+              w-10
               sm:h-16
               sm:w-16
               items-center
