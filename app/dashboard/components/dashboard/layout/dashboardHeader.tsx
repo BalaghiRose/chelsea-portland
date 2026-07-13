@@ -1,8 +1,10 @@
 "use client";
 
-import { Bell, Search } from "lucide-react";
+import { Bell, LogOut, Search } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { signOutAdmin } from "@/app/admin/login/actions";
 
 export default function DashboardHeader() {
   return (
@@ -66,6 +68,18 @@ export default function DashboardHeader() {
               </p>
             </div>
           </div>
+
+          <form action={signOutAdmin}>
+            <Button
+              type="submit"
+              variant="outline"
+              size="icon"
+              className="rounded-2xl border-border"
+              aria-label="Sign out"
+            >
+              <LogOut size={18} />
+            </Button>
+          </form>
         </div>
       </div>
     </header>
