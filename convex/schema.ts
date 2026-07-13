@@ -52,6 +52,13 @@ export default defineSchema({
     createdAt: v.number(),
 
     updatedAt: v.number(),
-  })
-    .index("by_slug", ["slug"]),
+  }).index("by_slug", ["slug"]),
+
+  cmsSections: defineTable({
+    section: v.string(),
+    content: v.any(),
+    isPublished: v.boolean(),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  }).index("by_section", ["section"]),
 });

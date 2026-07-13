@@ -7,6 +7,7 @@ import {
   BriefcaseBusiness,
   FolderKanban,
   Settings,
+  FileText,
 } from "lucide-react";
 import clsx from "clsx";
 
@@ -15,6 +16,11 @@ const navigation = [
     title: "Dashboard",
     href: "/dashboard",
     icon: LayoutDashboard,
+  },
+  {
+    title: "Website Content",
+    href: "/dashboard/content",
+    icon: FileText,
   },
   {
     title: "Services",

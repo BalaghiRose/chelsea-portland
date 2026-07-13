@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import { Mail, MapPin, Globe, ArrowRight, AlertCircle } from "lucide-react";
+import { normalizeSectionContent } from "./cms-section-content";
+
+interface ContactSectionProps {
+  content?: unknown;
+}
 
 // Common personal/free email providers we don't accept
 const PERSONAL_EMAIL_DOMAINS = [
@@ -37,7 +42,8 @@ function isBusinessEmail(email: string): boolean {
   return !PERSONAL_EMAIL_DOMAINS.includes(domain);
 }
 
-export default function ContactSection() {
+export default function ContactSection({ content }: ContactSectionProps) {
+  const cmsContent = normalizeSectionContent("contact", content);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [touched, setTouched] = useState(false);
@@ -87,7 +93,6 @@ export default function ContactSection() {
       return;
     }
 
-    // TODO: proceed with actual submission (API call, etc.)
     console.log("Form is valid, submitting...");
   };
 
@@ -97,46 +102,32 @@ export default function ContactSection() {
       className="bg-[#F4F4F4] py-20 sm:py-24 lg:py-32 xl:py-36"
     >
       <div className="mx-auto grid max-w-[1500px] gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:px-10">
-        {/* LEFT */}
-
         <div className="flex flex-col justify-between">
           <div className="max-w-xl">
             <h2 className="section-label text-secondary uppercase">
-              Contact Us
+              {cmsContent.sectionLabel ?? "Contact Us"}
             </h2>
 
-            <p className="mt-6 max-w-lg text-base leading-8 text-slate-600 sm:text-lg">
-              For enquiries relating to UK business, investment, property or
-              commercial interests, please contact Chelsea Portland House.
-            </p>
-            <p className="mt-3 max-w-lg text-base leading-8 text-slate-600 sm:text-lg">
-              We welcome enquiries from overseas law firms, businesses,
-              investors and private clients.
-            </p>
+            {cmsContent.paragraphs.map((paragraph, index) => (
+              <p
+                key={`${paragraph}-${index}`}
+                className="mt-6 max-w-lg text-base leading-8 text-slate-600 sm:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
           </div>
-
-          {/* Contact Cards */}
 
           <div className="mt-6 space-y-3 sm:mt-14 sm:space-y-4">
-            <ContactCard
-              icon={<MapPin size={22} />}
-              value="Chelsea Portland House,
-47–49 Park Royal Road, London, NW10 7LG, United Kingdom."
-            />
-
-            <ContactCard
-              icon={<Mail size={22} />}
-              value="partnerships@chelsea-portland.com"
-            />
-
-            <ContactCard
-              icon={<Globe size={22} />}
-              value="chelsea-portland.com"
-            />
+            {cmsContent.contactCards.map((card, index) => (
+              <ContactCard
+                key={`${card.value}-${index}`}
+                icon={getContactIcon(card.icon)}
+                value={card.value}
+              />
+            ))}
           </div>
         </div>
-
-        {/* FORM */}
 
         <div className="border border-[#d9dee3] bg-white p-5 sm:p-8 shadow-[0_40px_90px_-40px_rgba(0,16,30,.14)] lg:p-8 xl:p-10">
           <h3 className="section-label text-secondary uppercase">
@@ -209,6 +200,18 @@ export default function ContactSection() {
       </div>
     </section>
   );
+}
+
+function getContactIcon(icon?: "map" | "mail" | "globe") {
+  if (icon === "mail") {
+    return <Mail size={22} />;
+  }
+
+  if (icon === "globe") {
+    return <Globe size={22} />;
+  }
+
+  return <MapPin size={22} />;
 }
 
 interface CardProps {

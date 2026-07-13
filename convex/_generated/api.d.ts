@@ -9,6 +9,8 @@
  */
 
 import type * as caseStudies from "../caseStudies.js";
+import type * as cms_mutations from "../cms/mutations.js";
+import type * as cms_queries from "../cms/queries.js";
 import type * as services from "../services.js";
 
 import type {
@@ -19,6 +21,8 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   caseStudies: typeof caseStudies;
+  "cms/mutations": typeof cms_mutations;
+  "cms/queries": typeof cms_queries;
   services: typeof services;
 }>;
 

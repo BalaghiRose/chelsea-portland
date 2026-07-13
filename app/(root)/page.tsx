@@ -9,19 +9,37 @@ import LocationSection from "./_components/location";
 import ScrollReveal from "./_components/scroll-reveal";
 import ServicesSection from "./_components/services";
 import WhyUs from "./_components/why-us";
+import { fetchQuery } from "convex/nextjs";
+import { api } from "@/convex/_generated/api";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const about = await fetchQuery(api.cms.queries.getPublishedSection, {
+    section: "about",
+  });
+  const whyUs = await fetchQuery(api.cms.queries.getPublishedSection, {
+    section: "why-us",
+  });
+  const howWeHelp = await fetchQuery(api.cms.queries.getPublishedSection, {
+    section: "how-we-help",
+  });
+  const contact = await fetchQuery(api.cms.queries.getPublishedSection, {
+    section: "contact",
+  });
+  const location = await fetchQuery(api.cms.queries.getPublishedSection, {
+    section: "location",
+  });
+
   return (
     <main>
       <HeroSection />
-      <ScrollReveal><AboutSection /></ScrollReveal>
-      <ScrollReveal><WhyUs /></ScrollReveal>
-      <ScrollReveal><HowWeHelp /></ScrollReveal>
+      <ScrollReveal><AboutSection content={about?.content} /></ScrollReveal>
+      <ScrollReveal><WhyUs content={whyUs?.content} /></ScrollReveal>
+      <ScrollReveal><HowWeHelp content={howWeHelp?.content} /></ScrollReveal>
       <ScrollReveal><ServicesSection /></ScrollReveal>
       <ScrollReveal><OverseasLawFirms /></ScrollReveal>
       <ScrollReveal><CaseStudies /></ScrollReveal>
-      <ScrollReveal><ContactSection /></ScrollReveal>
-      <ScrollReveal><LocationSection /></ScrollReveal>
+      <ScrollReveal><ContactSection content={contact?.content} /></ScrollReveal>
+      <ScrollReveal><LocationSection content={location?.content} /></ScrollReveal>
       <ScrollReveal><Footer /></ScrollReveal>
     </main>
   );
