@@ -19,7 +19,7 @@ const headingSerif = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://chelsea-portland.com"),
+  metadataBase: new URL("https://www.chelsea-portland.com"),
   title: "Chelsea Portland | Trusted UK Presence For Businesses",
   description:
     "Trusted UK commercial presence, local representation and practical support for overseas law firms, international businesses and investors. Based in London.",
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
     title: "Chelsea Portland | Trusted UK Presence For Businesses",
     description:
       "Trusted UK commercial presence and local representation for overseas law firms, international businesses and investors with UK interests. Based in London.",
-    url: "https://chelsea-portland.com",
+    url: "https://www.chelsea-portland.com",
     siteName: "Chelsea Portland House",
     type: "website",
     locale: "en_GB",
     images: [
       {
-        url: "https://chelsea-portland.com/assets/images/hero_section_image.png",
+        url: "https://www.chelsea-portland.com/assets/images/chelsea_OG_Image.png",
         width: 1200,
         height: 630,
         alt: "Chelsea Portland | Trusted UK Presence For Businesses",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     title: "Chelsea Portland | Trusted UK Presence For Businesses",
     description:
       "Trusted UK commercial presence and local representation for overseas law firms, international businesses and investors with UK interests. Based in London.",
-    images: ["/assets/images/hero_section_image.png"],
+    images: ["https://www.chelsea-portland.com/assets/images/chelsea_OG_Image.png"],
   },
   robots: {
     index: true,
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://chelsea-portland.com",
+    canonical: "https://www.chelsea-portland.com",
   },
 };
 
