@@ -198,7 +198,7 @@ United Kingdom"
                     <p>London, NW10 7LQ</p>
                     <p>United Kingdom</p>
                     <br />
-                    <p>partnership@chelsea-portland.com</p>
+                    <p>partnerships@chelsea-portland.com</p>
                   </article>
                 </div>
                 <DialogFooter className="mt-6" showCloseButton />
@@ -215,7 +215,7 @@ United Kingdom"
               </DialogTrigger>
               <DialogContent className="rounded-3xl max-w-3xl  max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
-                  <DialogTitle>Terms of Service</DialogTitle>
+                  <DialogTitle>Terms of Use</DialogTitle>
                   <DialogDescription>Last updated: July 2026</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4 text-sm text-slate-900 dark:text-slate-100">
@@ -235,7 +235,7 @@ United Kingdom"
                       information purposes only.
                     </p>
                     <p>
-                      While we aim to keep informa tion accurate and up to date,
+                      While we aim to keep information accurate and up to date,
                       Chelsea Portland House does not guarantee that all
                       information is complete, current or suitable for every
                       circumstance.
@@ -259,7 +259,7 @@ United Kingdom"
                     <p>
                       Chelsea Portland House provides practical support,
                       coordination, introductions and UK - based assistance for
-                      clients with inter ests connected to the United Kingdom.
+                      clients with interests connected to the United Kingdom.
                     </p>
                     <p>
                       Any engagement with Chelsea Portland House will be subject
@@ -276,7 +276,7 @@ United Kingdom"
                       introductions to independent third parties.
                     </p>
                     <p>
-                      Che lsea Portland House is not responsible for the
+                      Chelsea Portland House is not responsible for the
                       content, services or actions of third parties.
                     </p>
                   </article>
@@ -288,7 +288,7 @@ United Kingdom"
                       to Chelsea Portland House unless otherwise stated.
                     </p>
                     <p>
-                      Content may not be copied or rep roduced without
+                      Content may not be copied or reproduced without
                       permission.
                     </p>
                   </article>
@@ -307,7 +307,7 @@ United Kingdom"
 
                   <article>
                     <h2 className="text-2xl ">Changes</h2>
-                    <p>We may update these Term s of Use from time to time</p>
+                    <p>We may update these Terms of Use from time to time</p>
                   </article>
 
                   <article>
@@ -319,7 +319,7 @@ United Kingdom"
                     <p>London, NW10 7LG,</p>
                     <p>United Kingdom</p>
                     <br />
-                    <p>partnership@chelsea-portland.com</p>
+                    <p>partnerships@chelsea-portland.com</p>
                   </article>
                 </div>
                 <DialogFooter className="mt-6" showCloseButton />

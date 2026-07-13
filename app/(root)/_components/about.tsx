@@ -20,7 +20,7 @@ export default function AboutSection() {
       <p>
         Through working with overseas businesses, investors and advisers, Hasan
         identified a recurring challenge: clients could obtain expert advice,
-        but often lacked a trusted pres ence within the United Kingdom to
+        but often lacked a trusted presence within the United Kingdom to
         support, coordinate and assist with practical matters on the ground.
       </p>
 
@@ -34,18 +34,14 @@ export default function AboutSection() {
       </p>
       <p>
         Drawing on professional experience, commercial understanding and a
-        trusted UK network, Chelsea Portland House provides overseas l aw firms,
+        trusted UK network, Chelsea Portland House provides overseas law firms,
         businesses, investors and private clients with a reliable point of
         contact within the United Kingdom.
       </p>
       <p>
         Our role is to understand each client’s objectives, coordinate with the
-        appropriate professionals, facilitate introductions, support communicati
-        on and provide practical involvement where UK - based assistance is
-        beneficial.Our role is to understand each client’s objectives,
-        coordinate with the appropriate professionals, facilitate introductions,
-        support communicati on and provide practical involvement where UK -
-        based assistance is beneficial.
+        appropriate professionals, facilitate introductions, support communication and provide practical involvement where UK - based assistance is
+        beneficial.
       </p>
 
       <p>

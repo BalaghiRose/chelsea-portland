@@ -18,7 +18,7 @@ export default function WhyUs() {
 
       <p>
         Whether establishing new opportunities or managing existing businesses,
-        property interests, investments, tra nsactions and projects, clients
+        property interests, investments, transactions and projects, clients
         frequently require practical support and trusted involvement on the
         ground.
       </p>
@@ -45,7 +45,7 @@ export default function WhyUs() {
 
       <p>
         For many of our clients, Chelsea Portland House becomes their trusted
-        first poin t of contact for UK - related matters.
+        first point of contact for UK - related matters.
       </p>
     </SectionLayout>
   );

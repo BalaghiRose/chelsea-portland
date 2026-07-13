@@ -16,7 +16,7 @@ export default function OverseasLawFirms() {
       <p>
         International clients often require support that extends beyond
         traditional advice, whether establishing a UK presence, managing
-        existing interests, expl oring opportunities or coordinating matters on
+        existing interests, exploring opportunities or coordinating matters on
         the ground.
       </p>
 
