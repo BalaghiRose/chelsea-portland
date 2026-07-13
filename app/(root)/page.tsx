@@ -12,22 +12,24 @@ import WhyUs from "./_components/why-us";
 import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 
+async function fetchPublishedSection(section: string) {
+  try {
+    return await fetchQuery(api.cms.queries.getPublishedSection, {
+      section,
+    });
+  } catch {
+    return null;
+  }
+}
+
 export default async function HomePage() {
-  const about = await fetchQuery(api.cms.queries.getPublishedSection, {
-    section: "about",
-  });
-  const whyUs = await fetchQuery(api.cms.queries.getPublishedSection, {
-    section: "why-us",
-  });
-  const howWeHelp = await fetchQuery(api.cms.queries.getPublishedSection, {
-    section: "how-we-help",
-  });
-  const contact = await fetchQuery(api.cms.queries.getPublishedSection, {
-    section: "contact",
-  });
-  const location = await fetchQuery(api.cms.queries.getPublishedSection, {
-    section: "location",
-  });
+  const [about, whyUs, howWeHelp, contact, location] = await Promise.all([
+    fetchPublishedSection("about"),
+    fetchPublishedSection("why-us"),
+    fetchPublishedSection("how-we-help"),
+    fetchPublishedSection("contact"),
+    fetchPublishedSection("location"),
+  ]);
 
   return (
     <main>

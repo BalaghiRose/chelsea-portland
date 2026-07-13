@@ -15,7 +15,7 @@ export default async function ContentSectionPage({
   const { section } = await params;
   const sectionRecord = await fetchQuery(api.cms.queries.getSection, {
     section,
-  });
+  }).catch(() => null);
 
   return (
     <ContentSectionEditor

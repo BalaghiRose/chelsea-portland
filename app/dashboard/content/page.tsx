@@ -13,7 +13,7 @@ const SUPPORTED_SECTIONS = [
 ];
 
 export default async function ContentPage() {
-  const sections = await fetchQuery(api.cms.queries.getAllSections);
+  const sections = await fetchQuery(api.cms.queries.getAllSections).catch(() => []);
   const sectionMap = new Map(sections.map((section) => [section.section, section]));
 
   const contentCards = SUPPORTED_SECTIONS.map((sectionKey) => {
