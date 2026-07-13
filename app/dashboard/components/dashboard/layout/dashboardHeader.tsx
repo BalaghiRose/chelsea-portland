@@ -13,62 +13,15 @@ export default function DashboardHeader() {
         {/* Left */}
 
         <div>
-          <h1 className="text-xl font-semibold tracking-tight text-primary">
+          <h1 className=" section-subheading  text-primary">
             Dashboard
           </h1>
 
-          <p className="mt-1 text-sm text-muted-foreground">
-            Manage your website content.
-          </p>
         </div>
 
         {/* Right */}
 
         <div className="flex items-center gap-4">
-          {/* Search */}
-
-          <div className="relative hidden w-72 lg:block">
-            <Search
-              size={16}
-              className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground"
-            />
-
-            <Input
-              placeholder="Search..."
-              className="h-10 rounded-2xl border-border pl-9"
-            />
-          </div>
-
-          {/* Notifications */}
-
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            className="rounded-2xl border-border"
-            aria-label="Notifications"
-          >
-            <Bell size={18} />
-          </Button>
-
-          {/* User */}
-
-          <div className="flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">
-              CP
-            </div>
-
-            <div className="hidden lg:block">
-              <p className="text-sm font-medium text-primary">
-                Administrator
-              </p>
-
-              <p className="text-xs text-muted-foreground">
-                admin@chelsea.com
-              </p>
-            </div>
-          </div>
-
           <form action={signOutAdmin}>
             <Button
               type="submit"
@@ -77,7 +30,7 @@ export default function DashboardHeader() {
               className="rounded-2xl border-border"
               aria-label="Sign out"
             >
-              <LogOut size={18} />
+              <LogOut size={18} className="text-red-600"/> 
             </Button>
           </form>
         </div>

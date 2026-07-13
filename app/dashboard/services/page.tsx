@@ -11,20 +11,22 @@ import ServiceTable from "./components/serviceTable";
 import ServiceDialog from "./components/serviceDialog";
 import type { DashboardService } from "./components/types";
 
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export default function ServicesPage() {
   const [open, setOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<DashboardService | null>(null);
+  const [selectedService, setSelectedService] =
+    useState<DashboardService | null>(null);
   const [sectionTitle, setSectionTitle] = useState("");
   const [savingSectionTitle, setSavingSectionTitle] = useState(false);
 
   const services = useQuery(api.services.getServices);
   const settings = useQuery(api.services.getServicesSectionSettings);
-  const upsertSectionSettings = useMutation(api.services.upsertServicesSectionSettings);
+  const upsertSectionSettings = useMutation(
+    api.services.upsertServicesSectionSettings,
+  );
 
   const resolvedSectionTitle = useMemo(() => {
     return sectionTitle || settings?.title || "Services";
@@ -68,22 +70,13 @@ export default function ServicesPage() {
         title="Services"
         description="Manage all services displayed on the Chelsea Portland website."
       >
-        <Button
-          onClick={handleCreateClick}
-          className="gap-2 rounded-2xl"
-        >
+        <Button onClick={handleCreateClick} className="gap-2 rounded-2xl">
           <Plus size={18} />
           Add Service
         </Button>
       </PageHeader>
 
-      <ServiceTable
-        services={(services ?? []) as DashboardService[]}
-        loading={services === undefined}
-        onEdit={handleEditClick}
-      />
-
-      <section className="mt-8 rounded-3xl border border-border bg-card p-6">
+      <section className="my-8 rounded-3xl border border-border bg-card p-6">
         <p className="mb-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
           Section Settings
         </p>
@@ -115,6 +108,13 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <ServiceTable
+        services={(services ?? []) as DashboardService[]}
+        loading={services === undefined}
+        onEdit={handleEditClick}
+      />
+
+ 
       <ServiceDialog
         open={open}
         onOpenChange={handleOpenChange}

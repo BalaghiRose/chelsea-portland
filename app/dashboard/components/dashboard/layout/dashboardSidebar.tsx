@@ -10,6 +10,7 @@ import {
   FileText,
 } from "lucide-react";
 import clsx from "clsx";
+import Image from "next/image";
 
 const navigation = [
   {
@@ -32,11 +33,7 @@ const navigation = [
     href: "/dashboard/case-studies",
     icon: FolderKanban,
   },
-  {
-    title: "Settings",
-    href: "/dashboard/settings",
-    icon: Settings,
-  },
+  
 ];
 
 export default function DashboardSidebar() {
@@ -46,12 +43,10 @@ export default function DashboardSidebar() {
     <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-border bg-card xl:flex">
       {/* Logo */}
       <div className="border-b border-border px-7 py-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-primary">
-          Chelsea Portland
-        </h2>
+       <Image src="/assets/logos/chelsea_portland_logo_152x56px_dark.svg" alt="Chelsea Portland" width={152} height={40} />
 
         <p className="mt-1 text-sm text-muted-foreground">
-          Content Management
+          Content Management System
         </p>
       </div>
 
@@ -83,16 +78,7 @@ export default function DashboardSidebar() {
         })}
       </nav>
 
-      {/* Footer */}
-      <div className="border-t border-border p-6">
-        <p className="text-xs text-muted-foreground">
-          Chelsea Portland CMS
-        </p>
-
-        <p className="mt-1 text-xs text-muted-foreground/80">
-          Version 1.0
-        </p>
-      </div>
+     
     </aside>
   );
 }

@@ -73,13 +73,7 @@ export default function CaseStudiesDashboardPage() {
         </Button>
       </PageHeader>
 
-      <CaseStudyTable
-        caseStudies={(caseStudies ?? []) as DashboardCaseStudy[]}
-        loading={caseStudies === undefined}
-        onEdit={handleEditClick}
-      />
-
-      <section className="mt-8 rounded-3xl border border-border bg-card p-6">
+       <section className="my-8 rounded-3xl border border-border bg-card p-6">
         <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <Label className="mb-2 block text-sm font-medium text-primary">
@@ -104,6 +98,14 @@ export default function CaseStudiesDashboardPage() {
           </Button>
         </div>
       </section>
+
+      <CaseStudyTable
+        caseStudies={(caseStudies ?? []) as DashboardCaseStudy[]}
+        loading={caseStudies === undefined}
+        onEdit={handleEditClick}
+      />
+
+     
 
       <CaseStudyDialog
         open={open}

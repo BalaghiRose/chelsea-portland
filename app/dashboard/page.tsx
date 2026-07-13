@@ -23,22 +23,23 @@ const modules = [
     href: "/dashboard/case-studies",
     icon: FolderKanban,
   },
-  {
-    title: "Site Settings",
+   {
+    title: "Website Content",
     description:
-      "Configure global website information, contact details and branding.",
-    href: "/dashboard/settings",
-    icon: FileText,
+      "Create and maintain project case studies showcased on the website.",
+    href: "/dashboard/content",
+    icon: FolderKanban,
   },
+  
 ];
 
 export default function DashboardPage() {
   return (
     <>
-      <PageHeader
+      {/* <PageHeader
         title="Dashboard"
         description="Welcome to the Chelsea Portland content management system."
-      />
+      /> */}
 
       <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {modules.map((module) => {
@@ -54,7 +55,7 @@ export default function DashboardPage() {
                 <Icon size={28} />
               </div>
 
-              <h2 className="mt-6 text-xl font-semibold text-primary">
+              <h2 className="mt-6 text-2xl font-lighter text-primary">
                 {module.title}
               </h2>
 

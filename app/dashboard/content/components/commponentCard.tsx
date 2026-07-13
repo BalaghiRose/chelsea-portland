@@ -27,7 +27,7 @@ export default function ContentCard({
       className="group rounded-3xl border bg-card p-6 transition-all hover:border-primary hover:shadow-lg"
     >
       <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">
+        <h2 className="text-2xl font-lighter">
           {titleCase(section.section)}
         </h2>
 

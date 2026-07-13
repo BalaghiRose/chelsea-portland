@@ -7,14 +7,12 @@ export default function ContentHeader() {
         <div className="flex items-center gap-3">
           <FileText className="h-7 w-7 text-primary" />
 
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl font-lighter">
             Website Content
           </h1>
         </div>
 
-        <p className="mt-2 text-muted-foreground">
-          Manage homepage content without modifying code.
-        </p>
+        
       </div>
     </div>
   );
