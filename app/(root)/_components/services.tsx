@@ -72,25 +72,26 @@ export default function Services() {
           </h2>
         </div>
 
-        {/* Slider with side arrows */}
-        <div className="relative">
-          {/* Left arrow — vertically centered against the slider */}
+        {/* Slider with side arrows — the wrapper reserves side gutters so the cards shrink
+            to make room for the buttons, instead of the buttons overlapping the cards */}
+        <div className="relative px-12 sm:px-14 lg:px-20">
+          {/* Left arrow — sits in the left gutter, vertically centered, with a gap to the card */}
           {showControls && (
             <button
               aria-label="Previous service"
               onClick={() => swiperRef.current?.slidePrev()}
-              className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-primary)] bg-white text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:left-2 sm:h-14 sm:w-14 lg:-left-6 lg:h-16 lg:w-16 [&_svg]:text-current hover:[&_svg]:!text-white"
+              className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-[var(--color-primary)] bg-white text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:h-11 sm:w-11 lg:h-14 lg:w-14 [&_svg]:text-current hover:[&_svg]:!text-white"
             >
               <ChevronLeft size={20} />
             </button>
           )}
 
-          {/* Right arrow — vertically centered against the slider */}
+          {/* Right arrow — sits in the right gutter, vertically centered, with a gap to the card */}
           {showControls && (
             <button
               aria-label="Next service"
               onClick={() => swiperRef.current?.slideNext()}
-              className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-primary)] bg-white text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:right-2 sm:h-14 sm:w-14 lg:-right-6 lg:h-16 lg:w-16 [&_svg]:text-current hover:[&_svg]:!text-white"
+              className="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-[var(--color-primary)] bg-white text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:h-11 sm:w-11 lg:h-14 lg:w-14 [&_svg]:text-current hover:[&_svg]:!text-white"
             >
               <ChevronRight size={20} />
             </button>
