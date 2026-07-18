@@ -34,7 +34,7 @@ export default function LocationSection({ content }: LocationSectionProps) {
               href={mapLink ?? "https://www.google.com/maps/place/Premier+Business+Centre/@51.5270563,-0.2693782,17z"}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex w-full sm:w-auto items-center justify-center gap-3 sm:gap-4 border border-white/20 px-5 sm:px-7 py-4 sm:py-5 text-sm sm:text-base uppercase tracking-[0.14em] sm:tracking-[0.22em] text-white transition hover:border-[#C59A5C] hover:bg-white hover:text-primary"
+              className="group inline-flex w-full sm:w-auto items-center justify-center gap-3 sm:gap-4 border border-white/20 px-5 sm:px-7 py-4 sm:py-5 text-sm sm:text-base uppercase tracking-[0.14em] sm:tracking-[0.22em] text-white transition hover:border-[#FFFFFF] hover:bg-white hover:text-primary"
             >
               <MapPin size={18} />
               {cmsContent.ctaLabel ?? "View on Google Maps"}

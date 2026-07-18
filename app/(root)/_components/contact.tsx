@@ -8,6 +8,17 @@ interface ContactSectionProps {
   content?: unknown;
 }
 
+interface ContactFormValues {
+  fullName: string;
+  organisation: string;
+  email: string;
+  telephone: string;
+  message: string;
+}
+
+const SITE_CONTACT_EMAIL = "partnerships@chelsea-portland.com";
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 // Common personal/free email providers we don't accept
 const PERSONAL_EMAIL_DOMAINS = [
   "gmail.com",
@@ -32,21 +43,32 @@ const PERSONAL_EMAIL_DOMAINS = [
   "rediffmail.com",
 ];
 
+const INITIAL_FORM_VALUES: ContactFormValues = {
+  fullName: "",
+  organisation: "",
+  email: "",
+  telephone: "",
+  message: "",
+};
+
 function isBusinessEmail(email: string): boolean {
   const trimmed = email.trim().toLowerCase();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailRegex.test(trimmed)) return false;
+  if (!EMAIL_REGEX.test(trimmed)) return false;
 
   const domain = trimmed.split("@")[1];
-  return !PERSONAL_EMAIL_DOMAINS.includes(domain);
+  return domain ? !PERSONAL_EMAIL_DOMAINS.includes(domain) : false;
 }
 
 export default function ContactSection({ content }: ContactSectionProps) {
   const cmsContent = normalizeSectionContent("contact", content);
-  const [email, setEmail] = useState("");
+  const [values, setValues] = useState<ContactFormValues>(INITIAL_FORM_VALUES);
+  const [fullNameError, setFullNameError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [messageError, setMessageError] = useState("");
   const [touched, setTouched] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const validateEmail = (value: string) => {
     if (!value.trim()) {
@@ -54,8 +76,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value.trim())) {
+    if (!EMAIL_REGEX.test(value.trim())) {
       setEmailError("Please enter a valid email address.");
       return;
     }
@@ -70,30 +91,84 @@ export default function ContactSection({ content }: ContactSectionProps) {
     setEmailError("");
   };
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    if (touched) validateEmail(value);
-  };
+  const handleFieldChange =
+    (field: keyof ContactFormValues) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const value = e.target.value;
+      setValues((currentValues) => ({
+        ...currentValues,
+        [field]: value,
+      }));
 
-  const handleEmailBlur = () => {
-    setTouched(true);
-    validateEmail(email);
-  };
+      if (field === "email" && touched) {
+        validateEmail(value);
+      }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      if (field === "fullName" && touched) {
+        setFullNameError(value.trim() ? "" : "Please enter your full name.");
+      }
+
+      if (field === "message" && touched) {
+        setMessageError(value.trim() ? "" : "Please enter your message.");
+      }
+
+      setSubmitMessage("");
+    };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setTouched(true);
+    setSubmitMessage("");
+
+    const fullName = values.fullName.trim();
+    const message = values.message.trim();
+    const email = values.email.trim();
+
+    setFullNameError(fullName ? "" : "Please enter your full name.");
+    setMessageError(message ? "" : "Please enter your message.");
     validateEmail(email);
 
-    if (!email.trim() || !isBusinessEmail(email)) {
-      setEmailError(
-        "Please use your business email address to submit your enquiry."
-      );
+    if (!fullName || !message || !email || !isBusinessEmail(email)) {
       return;
     }
 
-    console.log("Form is valid, submitting...");
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          organisation: values.organisation.trim(),
+          email,
+          telephone: values.telephone.trim(),
+          message,
+        }),
+      });
+
+      const result = (await response.json()) as { error?: string; success?: boolean };
+
+      if (!response.ok || !result.success) {
+        setSubmitMessage(result.error ?? "Failed to send enquiry.");
+        return;
+      }
+
+      setValues(INITIAL_FORM_VALUES);
+      setTouched(false);
+      setFullNameError("");
+      setMessageError("");
+      setEmailError("");
+      setSubmitMessage(
+        `Thank you. Your enquiry has been sent to ${SITE_CONTACT_EMAIL}.`
+      );
+    } catch {
+      setSubmitMessage("Failed to send enquiry. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -134,11 +209,30 @@ export default function ContactSection({ content }: ContactSectionProps) {
             Enquiry Form
           </h3>
 
-          <form className="mt-10 flex h-full flex-col" onSubmit={handleSubmit} noValidate>
+          <form
+            className="mt-10 flex h-full flex-col"
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <div className="grid gap-8">
-              <Input label="Full Name" required />
+              <Input
+                label="Full Name"
+                name="fullName"
+                required
+                value={values.fullName}
+                onChange={handleFieldChange("fullName")}
+                aria-invalid={!!fullNameError}
+                aria-describedby={fullNameError ? "full-name-error" : undefined}
+                error={!!fullNameError}
+                errorText={fullNameError}
+              />
 
-              <Input label="Organisation" />
+              <Input
+                label="Organisation"
+                name="organisation"
+                value={values.organisation}
+                onChange={handleFieldChange("organisation")}
+              />
 
               <div>
                 <label className="mb-3 block text-base uppercase tracking-[0.16em] sm:tracking-[0.22em] text-primary">
@@ -147,9 +241,13 @@ export default function ContactSection({ content }: ContactSectionProps) {
 
                 <input
                   type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  onBlur={handleEmailBlur}
+                  name="email"
+                  value={values.email}
+                  onChange={handleFieldChange("email")}
+                  onBlur={() => {
+                    setTouched(true);
+                    validateEmail(values.email);
+                  }}
                   required
                   aria-invalid={!!emailError}
                   aria-describedby={emailError ? "email-error" : undefined}
@@ -169,7 +267,13 @@ export default function ContactSection({ content }: ContactSectionProps) {
                 )}
               </div>
 
-              <Input label="Telephone" />
+              <Input
+                label="Telephone"
+                type="tel"
+                name="telephone"
+                value={values.telephone}
+                onChange={handleFieldChange("telephone")}
+              />
 
               <div>
                 <label className="mb-3 block text-base uppercase tracking-[0.16em] sm:tracking-[0.22em] text-primary">
@@ -178,17 +282,40 @@ export default function ContactSection({ content }: ContactSectionProps) {
 
                 <textarea
                   rows={3}
-                  className="w-full border-0 border-b border-slate-300 bg-transparent px-0 pb-4 pt-2 text-base outline-none transition focus:border-[#C59A5C] sm:text-lg"
+                  name="message"
+                  value={values.message}
+                  onChange={handleFieldChange("message")}
+                  required
+                  aria-invalid={!!messageError}
+                  aria-describedby={messageError ? "message-error" : undefined}
+                  className={`w-full border-0 border-b bg-transparent px-0 pb-4 pt-2 text-base outline-none transition focus:border-[#C59A5C] sm:text-lg ${
+                    messageError ? "border-red-500" : "border-slate-300"
+                  }`}
                 />
+
+                {messageError && (
+                  <p
+                    id="message-error"
+                    className="mt-2 flex items-start gap-1.5 text-sm text-red-600"
+                  >
+                    <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                    <span>{messageError}</span>
+                  </p>
+                )}
               </div>
             </div>
+
+            {submitMessage && (
+              <p className="mt-6 text-sm text-secondary">{submitMessage}</p>
+            )}
 
             <div className="mt-10">
               <button
                 type="submit"
-                className="group flex w-full items-center justify-center gap-3 border border-[#00101E] bg-primary px-4 py-4 sm:py-5 text-base sm:text-lg uppercase tracking-[0.14em] sm:tracking-[0.25em] text-white transition hover:bg-[#0B2138]"
+                disabled={isSubmitting}
+                className="group flex w-full items-center justify-center gap-3 border border-[#00101E] bg-primary px-4 py-4 text-base uppercase tracking-[0.14em] text-white transition hover:bg-[#0B2138] disabled:cursor-not-allowed disabled:opacity-70 sm:py-5 sm:text-lg sm:tracking-[0.25em]"
               >
-                Send Enquiry
+                {isSubmitting ? "Preparing Email..." : "Send Enquiry"}
                 <ArrowRight
                   size={18}
                   className="transition group-hover:translate-x-1"
@@ -221,13 +348,13 @@ interface CardProps {
 
 function ContactCard({ icon, value }: CardProps) {
   return (
-    <div className="flex items-center gap-3  sm:items-center sm:gap-4 sm:py-3  lg:py-6">
+    <div className="flex items-center gap-3 sm:items-center sm:gap-4 sm:py-3 lg:py-6">
       <div className="flex h-14 w-14 shrink-0 items-center justify-center bg-secondary text-white">
         {icon}
       </div>
 
       <div>
-        <p className="whitespace-pre-line leading-7 text-primary w-full max-w-[34ch]">
+        <p className="w-full max-w-[34ch] whitespace-pre-line leading-7 text-primary">
           {value}
         </p>
       </div>
@@ -237,19 +364,43 @@ function ContactCard({ icon, value }: CardProps) {
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  error?: boolean;
+  errorText?: string;
 }
 
-function Input({ label, ...props }: InputProps) {
+function Input({
+  label,
+  error = false,
+  errorText,
+  ...props
+}: InputProps) {
+  const fieldId = props.name ? `${props.name}-field` : undefined;
+  const describedBy = errorText ? `${props.name}-error` : props["aria-describedby"];
+
   return (
     <div>
-      <label className="mb-3 block text-base uppercase tracking-[0.16em] sm:tracking-[0.22em] text-primary">
+      <label className="mb-3 block text-base uppercase tracking-[0.16em] text-primary sm:tracking-[0.22em]">
         {label}
       </label>
 
       <input
         {...props}
-        className="w-full border-0 border-b border-slate-300 bg-transparent px-0  text-sm outline-none transition focus:border-[#af0040] sm:text-lg"
+        id={fieldId}
+        aria-describedby={describedBy}
+        className={`w-full border-0 border-b bg-transparent px-0 text-sm outline-none transition focus:border-[#af0040] sm:text-lg ${
+          error ? "border-red-500" : "border-slate-300"
+        }`}
       />
+
+      {errorText && (
+        <p
+          id={`${props.name}-error`}
+          className="mt-2 flex items-start gap-1.5 text-sm text-red-600"
+        >
+          <AlertCircle size={16} className="mt-0.5 shrink-0" />
+          <span>{errorText}</span>
+        </p>
+      )}
     </div>
   );
 }

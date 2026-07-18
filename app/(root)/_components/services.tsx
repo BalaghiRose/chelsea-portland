@@ -3,13 +3,14 @@
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { useRef } from "react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { useRef, useState } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 import "swiper/css";
+import "swiper/css/pagination";
 
 const services = [
   {
@@ -34,6 +35,8 @@ const services = [
 
 export default function Services() {
   const swiperRef = useRef<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const dynamicServices = useQuery(api.services.getServices);
   const sectionSettings = useQuery(api.services.getServicesSectionSettings);
 
@@ -53,148 +56,108 @@ export default function Services() {
           altText: service.title,
         }));
 
+  const total = serviceItems.length;
+  const showControls = total > 1;
+
   return (
-    <section id="services" className="bg-[#F4F4F4] py-8 sm:py-16 lg:py-24 xl:py-28">
+    <section
+      id="services"
+      className="bg-[#F4F4F4] py-8 sm:py-16 lg:py-24 xl:py-28"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* Heading */}
-
-        <div className="mb-4 text-center sm:mb-8">
+        <div className="mb-6 flex flex-col items-center gap-2 text-center sm:mb-10">
           <h2 className="text-secondary section-label section-label--center">
             {(sectionSettings?.title ?? "Services").toUpperCase()}
           </h2>
         </div>
 
-        {/* Slider */}
+        {/* Slider with side arrows */}
+        <div className="relative">
+          {/* Left arrow — vertically centered against the slider */}
+          {showControls && (
+            <button
+              aria-label="Previous service"
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="absolute left-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-primary)] bg-white text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:left-2 sm:h-14 sm:w-14 lg:-left-6 lg:h-16 lg:w-16 [&_svg]:text-current hover:[&_svg]:!text-white"
+            >
+              <ChevronLeft size={20} />
+            </button>
+          )}
 
-        <Swiper
-          modules={[Navigation]}
-          slidesPerView={1}
-          spaceBetween={30}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-        >
-          {serviceItems.map((service) => (
-            <SwiperSlide key={service.id}>
-              <div className="grid overflow-hidden bg-white lg:grid-cols-2">
-                {/* Image */}
+          {/* Right arrow — vertically centered against the slider */}
+          {showControls && (
+            <button
+              aria-label="Next service"
+              onClick={() => swiperRef.current?.slideNext()}
+              className="absolute right-1 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--color-primary)] bg-white text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:right-2 sm:h-14 sm:w-14 lg:-right-6 lg:h-16 lg:w-16 [&_svg]:text-current hover:[&_svg]:!text-white"
+            >
+              <ChevronRight size={20} />
+            </button>
+          )}
 
-                <div className="order-1 relative min-h-[160px] sm:min-h-[320px] lg:order-2 lg:min-h-[560px] xl:min-h-[600px]">
-                  <Image
-                    src={service.image}
-                    alt={service.altText}
-                    fill
-                    className="object-cover object-center"
-                  />
-                </div>
-
-                {/* Content */}
-
-                <div className="order-2 flex flex-col justify-center p-3 sm:p-8 lg:order-1 lg:p-12 xl:p-16">
-                  <Image
-                    src={service.icon}
-                    alt={`${service.title} icon`}
-                    width={80}
-                    height={80}
-                    className="mb-2 w-10 sm:mb-6 sm:w-20"
-                  />
-
-                  <h3 className="font-heading mb-1.5 sm:mb-6 section_service-subheading text-primary font-agatho">
-                    {service.title}
-                  </h3>
-
-                  <p className="mb-0 text-sm font-light leading-5 text-primary line-clamp-3 sm:text-base sm:leading-6 sm:line-clamp-none">
-                    {service.description}
-                  </p>
-
-                  {/* <button
-                    className="
-                    inline-flex
-                    w-full
-                    sm:w-fit
-                    items-center
-                    justify-around
-                    gap-2
-                    sm:gap-8
-                    border
-                    border-[var(--color-primary)]
-                    text-primary
-                    max-sm:px-2
-                    sm:px-8
-                    py-4
-                    max-xs:text-[10px]
-                    text-xs
-                    sm:text-base
-                    uppercase
-                    tracking-[0.14em]
-                    sm:tracking-wide
-                    transition
-                    hover:border-[var(--color-primary)]
-                    hover:bg-[var(--color-primary)]
-                    hover:!text-white
-                    [&_svg]:text-current
-                    hover:[&_svg]:!text-white
-                  "
-                  >
-                    {service.button}
-
-                    <ChevronRight size={18} />
-                  </button> */}
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        {/* Navigation */}
-
-        <div className="mt-2 flex justify-center gap-2 sm:mt-6 sm:gap-5">
-          <button
-            onClick={() => swiperRef.current?.slidePrev()}
-            className="
-              flex
-              h-10
-              w-10
-              sm:h-16
-              sm:w-16
-              items-center
-              justify-center
-              border
-              border-[var(--color-primary)]
-              text-primary
-              transition
-              hover:border-[var(--color-primary)]
-              hover:bg-[var(--color-primary)]
-              hover:!text-white
-              [&_svg]:text-current
-              hover:[&_svg]:!text-white
-            "
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            slidesPerView={1.08}
+            spaceBetween={16}
+            grabCursor
+            loop={total > 3}
+            autoplay={
+              showControls
+                ? {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                  }
+                : false
+            }
+            breakpoints={{
+              640: { slidesPerView: 1.15, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 24 },
+              1280: { slidesPerView: 3, spaceBetween: 32 },
+            }}
+            pagination={
+              showControls
+                ? { el: ".services-pagination", clickable: true }
+                : false
+            }
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           >
-            <ChevronLeft size={20} />
-          </button>
+            {serviceItems.map((service) => (
+              <SwiperSlide key={service.id} className="h-auto">
+                <div className="flex h-full flex-col overflow-hidden bg-white">
+                  {/* Image on top */}
+                  <div className="relative h-48 w-full sm:h-56 lg:h-52 xl:h-56">
+                    <Image
+                      src={service.image}
+                      alt={service.altText}
+                      fill
+                      className="object-cover object-center"
+                    />
+                  </div>
 
-          <button
-            onClick={() => swiperRef.current?.slideNext()}
-            className="
-              flex
-              h-10
-              w-10
-              sm:h-16
-              sm:w-16
-              items-center
-              justify-center
-              border
-              border-[var(--color-primary)]
-              text-primary
-              transition
-              hover:border-[var(--color-primary)]
-              hover:bg-[var(--color-primary)]
-              hover:!text-white
-              [&_svg]:text-current
-              hover:[&_svg]:!text-white
-            "
-          >
-            <ChevronRight size={20} />
-          </button>
+                  {/* Content below */}
+                  <div className="flex flex-1 flex-col p-4 sm:p-6 lg:p-6 xl:p-4">
+                    <h3 className="font-heading mb-1.5 section_service-subheading text-primary font-agatho">
+                      {service.title}
+                    </h3>
+
+                    <p className="mb-0 text-sm font-light leading-5 text-primary line-clamp-3 sm:text-base sm:leading-6 sm:line-clamp-4">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
+
+        {showControls && (
+          <div className="mt-5 flex w-full justify-center sm:mt-8">
+            <div className="services-pagination mx-auto flex w-fit items-center justify-center gap-2 [&_.swiper-pagination-bullet]:!m-0 [&_.swiper-pagination-bullet]:!h-2 [&_.swiper-pagination-bullet]:!w-2 [&_.swiper-pagination-bullet]:!cursor-pointer [&_.swiper-pagination-bullet]:!rounded-full [&_.swiper-pagination-bullet]:!bg-[var(--color-primary)]/25 [&_.swiper-pagination-bullet]:!opacity-100 [&_.swiper-pagination-bullet]:!transition-all [&_.swiper-pagination-bullet]:!duration-300 [&_.swiper-pagination-bullet-active]:!w-6 [&_.swiper-pagination-bullet-active]:!rounded-full [&_.swiper-pagination-bullet-active]:!bg-[var(--color-primary)]" />
+          </div>
+        )}
       </div>
     </section>
   );

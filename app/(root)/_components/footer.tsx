@@ -15,10 +15,10 @@ import {
 
 const navigation = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Contact", href: "/contact" },
+  { label: "About Us", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Case Studies", href: "#case-studies" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Footer() {
