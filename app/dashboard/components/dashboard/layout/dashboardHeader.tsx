@@ -29,7 +29,7 @@ export default function DashboardHeader() {
               className="border border-red-500 bg-red-200 rounded-xs"
               aria-label="Sign out"
             >
-             Logout <LogOut size={18} className="text-red-500" />
+             Logout <LogOut size={18} className="text-red-600" />
             </Button>
           </form>
         </div>
