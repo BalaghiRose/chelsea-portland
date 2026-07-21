@@ -138,7 +138,7 @@ export default function ContentSectionEditor({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3">
+        <div className="flex items-center gap-3 border border-border bg-card px-4 py-3">
           <button
             type="button"
             onClick={() => setIsPublished((current) => !current)}
@@ -150,7 +150,7 @@ export default function ContentSectionEditor({
         </div>
       </div>
 
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
+      <div className="border border-border bg-card p-6 shadow-sm">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="space-y-6">
             <div>
@@ -165,7 +165,7 @@ export default function ContentSectionEditor({
                     sectionLabel: event.target.value,
                   }))
                 }
-                className="h-11 rounded-2xl border-border bg-background"
+                className="h-11 border-border bg-background"
                 placeholder={resolvedSectionLabel}
               />
             </div>
@@ -182,7 +182,7 @@ export default function ContentSectionEditor({
                     title: event.target.value,
                   }))
                 }
-                className="h-11 rounded-2xl border-border bg-background"
+                className="h-11 border-border bg-background"
                 placeholder="Add a section title"
               />
             </div>
@@ -195,7 +195,7 @@ export default function ContentSectionEditor({
                 value={formState.paragraphs.join("\n\n")}
                 onChange={(event) => handleParagraphChange(event.target.value)}
                 rows={12}
-                className="rounded-2xl border-border bg-background"
+                className="border-border bg-background"
                 placeholder="Add one paragraph per line or blank line between blocks."
               />
             </div>
@@ -203,7 +203,7 @@ export default function ContentSectionEditor({
 
           <div className="space-y-6">
             {section === "contact" ? (
-              <div className="space-y-4 rounded-2xl border border-border bg-background/70 p-4">
+              <div className="space-y-4 border border-border bg-background/70 p-4">
                 <div>
                   <p className="text-sm font-semibold text-primary">Contact Cards</p>
                   <p className="text-xs text-muted-foreground">
@@ -212,7 +212,7 @@ export default function ContentSectionEditor({
                 </div>
 
                 {(formState.contactCards ?? []).map((card, index) => (
-                  <div key={`${card.value}-${index}`} className="grid gap-3 rounded-2xl border border-border/80 bg-card p-3">
+                  <div key={`${card.value}-${index}`} className="grid gap-3 border border-border/80 bg-card p-3">
                     <div>
                       <Label className="mb-2 block text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
                         Card {index + 1}
@@ -222,7 +222,7 @@ export default function ContentSectionEditor({
                         onChange={(event) =>
                           handleContactCardChange(index, "icon", event.target.value)
                         }
-                        className="h-10 w-full rounded-xl border border-border bg-background px-3 text-sm"
+                        className="h-10 w-full border border-border bg-background px-3 text-sm"
                       >
                         <option value="map">Map</option>
                         <option value="mail">Mail</option>
@@ -240,7 +240,7 @@ export default function ContentSectionEditor({
                           handleContactCardChange(index, "value", event.target.value)
                         }
                         rows={3}
-                        className="rounded-2xl border-border bg-background"
+                        className="border-border bg-background"
                       />
                     </div>
                   </div>
@@ -249,7 +249,7 @@ export default function ContentSectionEditor({
             ) : null}
 
             {section === "location" ? (
-              <div className="space-y-4 rounded-2xl border border-border bg-background/70 p-4">
+              <div className="space-y-4 border border-border bg-background/70 p-4">
                 <div>
                   <Label className="mb-2 block text-sm font-medium text-primary">
                     CTA Label
@@ -262,7 +262,7 @@ export default function ContentSectionEditor({
                         ctaLabel: event.target.value,
                       }))
                     }
-                    className="h-11 rounded-2xl border-border bg-background"
+                    className="h-11 border-border bg-background"
                     placeholder="View on Google Maps"
                   />
                 </div>
@@ -279,7 +279,7 @@ export default function ContentSectionEditor({
                         mapLink: event.target.value,
                       }))
                     }
-                    className="h-11 rounded-2xl border-border bg-background"
+                    className="h-11 border-border bg-background"
                     placeholder="https://maps.google.com/..."
                   />
                 </div>
@@ -296,7 +296,7 @@ export default function ContentSectionEditor({
                         mapEmbedSrc: event.target.value,
                       }))
                     }
-                    className="h-11 rounded-2xl border-border bg-background"
+                    className="h-11 border-border bg-background"
                     placeholder="https://www.google.com/maps/embed?..."
                   />
                 </div>
@@ -314,7 +314,6 @@ export default function ContentSectionEditor({
             <Button
               type="button"
               variant="outline"
-              className="rounded-2xl"
               onClick={() => window.location.assign("/dashboard/content")}
             >
               Cancel
@@ -322,7 +321,6 @@ export default function ContentSectionEditor({
 
             <Button
               type="button"
-              className="rounded-2xl"
               disabled={isSaving}
               onClick={handleSave}
             >

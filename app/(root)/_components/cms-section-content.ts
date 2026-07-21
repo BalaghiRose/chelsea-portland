@@ -61,7 +61,7 @@ const DEFAULT_SECTION_CONTENT: Record<string, CmsSectionContent> = {
       {
         icon: "map",
         value:
-          "Chelsea Portland House,\n47–49 Park Royal Road, London, NW10 7LG, United Kingdom.",
+          "Chelsea Portland House,\n47–49 Park Royal Road, London, NW10 7LQ, United Kingdom.",
       },
       {
         icon: "mail",
@@ -81,9 +81,9 @@ const DEFAULT_SECTION_CONTENT: Record<string, CmsSectionContent> = {
     contactCards: [],
     ctaLabel: "View on Google Maps",
     mapLink:
-      "https://www.google.com/maps/place/Premier+Business+Centre/@51.5270563,-0.2693782,17z",
+      "https://www.google.com/maps?q=Chelsea%20Portland%20House%2C%2047-49%20Park%20Royal%20Road%2C%20London%2C%20NW10%207LQ%2C%20United%20Kingdom",
     mapEmbedSrc:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.2455296996804!2d-0.26937817309932743!3d51.527056309266804!2m3!1f0!2f0!3f0!3m2!1s0x487611841acf0d3f%3A0xe3783e4c6636329!2sPremier+Business+Centre!5e0!3m2!1sen!2s!4v1782977736137!5m2!1sen!2s",
+      "https://www.google.com/maps?q=Chelsea%20Portland%20House%2C%2047-49%20Park%20Royal%20Road%2C%20London%2C%20NW10%207LQ%2C%20United%20Kingdom&output=embed",
   },
 };
 

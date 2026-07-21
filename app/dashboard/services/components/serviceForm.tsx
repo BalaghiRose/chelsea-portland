@@ -148,7 +148,7 @@ export default function ServiceForm({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={10}
-              className="rounded-2xl border-border bg-background"
+              className="border-border bg-background"
               placeholder="Add one paragraph per line"
             />
           </div>
@@ -161,8 +161,8 @@ export default function ServiceForm({
             </Label>
 
             {service?.iconUrl ? (
-              <div className="mb-4 inline-flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl border border-border bg-muted/30 p-2">
-                <div className="relative h-full w-full overflow-hidden rounded-xl">
+              <div className="mb-4 inline-flex h-20 w-20 items-center justify-center overflow-hidden border border-border bg-muted/30 p-2">
+                <div className="relative h-full w-full overflow-hidden">
                   <Image
                     src={service.iconUrl}
                     alt={service.title}
@@ -200,8 +200,8 @@ export default function ServiceForm({
             </Label>
 
             {service?.thumbnailUrl ? (
-              <div className="mb-4 overflow-hidden rounded-2xl border border-border bg-muted/30 p-2">
-                <div className="relative aspect-[16/8] overflow-hidden rounded-xl">
+              <div className="mb-4 overflow-hidden border border-border bg-muted/30 p-2">
+                <div className="relative aspect-[16/8] overflow-hidden">
                   <Image
                     src={service.thumbnailUrl}
                     alt={altText || service.altText}

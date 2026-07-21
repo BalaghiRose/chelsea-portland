@@ -160,8 +160,8 @@ export default function CaseStudyForm({
             <Label className="mb-2 block text-sm font-medium text-primary">Thumbnail</Label>
 
             {caseStudy?.thumbnailUrl ? (
-              <div className="mb-4 overflow-hidden rounded-2xl border border-border bg-muted/30 p-2">
-                <div className="relative aspect-[16/8] overflow-hidden rounded-xl">
+              <div className="mb-4 overflow-hidden border border-border bg-muted/30 p-2">
+                <div className="relative aspect-[16/8] overflow-hidden">
                   <Image
                     src={caseStudy.thumbnailUrl}
                     alt={altText || caseStudy.altText}
@@ -175,7 +175,7 @@ export default function CaseStudyForm({
             <input
               type="file"
               accept="image/*"
-              className="block text-sm text-muted-foreground file:mr-4 file:rounded-2xl file:border file:border-border file:bg-background file:px-4 file:py-2 file:text-sm file:text-foreground"
+              className="block text-sm text-muted-foreground file:mr-4 file:border file:border-border file:bg-background file:px-4 file:py-2 file:text-sm file:text-foreground"
               onChange={(e) => {
                 const file = e.target.files?.[0] ?? null;
                 setThumbnailFile(file);
@@ -223,7 +223,7 @@ export default function CaseStudyForm({
             />
           </div>
 
-          <label className="flex items-center gap-3 rounded-2xl border border-border bg-background px-4 py-3 text-sm text-primary">
+          <label className="flex items-center gap-3 border border-border bg-background px-4 py-3 text-sm text-primary">
             <input
               type="checkbox"
               checked={featured}
@@ -236,10 +236,10 @@ export default function CaseStudyForm({
       </div>
 
       <div className="flex justify-end gap-3">
-        <Button type="button" variant="outline" className="rounded-2xl" onClick={onCancel}>
+        <Button type="button" variant="outline" onClick={onCancel}>
           Cancel
         </Button>
-        <Button type="submit" className="rounded-2xl" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting}>
           {caseStudy ? "Update Case Study" : "Save Case Study"}
         </Button>
       </div>

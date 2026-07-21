@@ -66,14 +66,14 @@ export default function CaseStudiesDashboardPage() {
       >
         <Button
           onClick={handleCreateClick}
-          className="gap-2 rounded-2xl"
+          className="gap-2"
         >
           <Plus size={18} />
           Add Case Study
         </Button>
       </PageHeader>
 
-       <section className="my-8 rounded-3xl border border-border bg-card p-6">
+       <section className="my-8 border border-border bg-card p-6">
         <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <Label className="mb-2 block text-sm font-medium text-primary">
@@ -83,14 +83,13 @@ export default function CaseStudiesDashboardPage() {
             <Input
               value={resolvedSectionTitle}
               onChange={(e) => setSectionTitle(e.target.value)}
-              className="h-11 rounded-2xl border-border bg-background"
+              className="h-11 border-border bg-background"
               placeholder="Case Studies"
             />
           </div>
 
           <Button
             type="button"
-            className="rounded-2xl"
             disabled={savingSectionTitle}
             onClick={handleSaveSectionTitle}
           >

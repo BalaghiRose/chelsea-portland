@@ -63,7 +63,7 @@ export default function Footer() {
               icon={<MapPin size={20} />}
               value="Chelsea Portland House
 47–49 Park Royal Road
-London NW10 7LG
+London NW10 7LQ
 United Kingdom"
             />
 
@@ -316,7 +316,7 @@ United Kingdom"
                     <p></p>
                     47–49 Park Royal Road,
                     <br />
-                    <p>London, NW10 7LG,</p>
+                    <p>London, NW10 7LQ,</p>
                     <p>United Kingdom</p>
                     <br />
                     <p>partnerships@chelsea-portland.com</p>

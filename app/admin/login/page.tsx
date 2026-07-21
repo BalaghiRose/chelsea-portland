@@ -20,7 +20,7 @@ export default async function AdminLoginPage({
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-muted/30 px-4 py-10">
+    <main className="">
       <LoginForm nextPath={next ?? "/dashboard"} />
     </main>
   );

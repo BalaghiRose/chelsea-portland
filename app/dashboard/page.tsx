@@ -49,9 +49,9 @@ export default function DashboardPage() {
             <Link
               key={module.title}
               href={module.href}
-              className="group rounded-3xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-xl"
+              className="group flex h-full flex-col border border-border bg-card p-7 transition-all duration-200 hover:border-primary/40 hover:bg-muted/40"
             >
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+              <div className="flex h-14 w-14 items-center justify-center border border-border bg-background text-primary">
                 <Icon size={28} />
               </div>
 
@@ -67,7 +67,7 @@ export default function DashboardPage() {
                 type="button"
                 variant="outline"
                 size="sm"
-                className="mt-8 rounded-2xl border-border"
+                className="mt-8 border-border"
               >
                 Manage
                 <ArrowUpRight

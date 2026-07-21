@@ -24,7 +24,7 @@ export default function ContentCard({
   return (
     <Link
       href={`/dashboard/content/${section.section}`}
-      className="group rounded-3xl border bg-card p-6 transition-all hover:border-primary hover:shadow-lg"
+      className="group border border-border bg-card p-6 transition-all hover:border-primary hover:bg-muted/40"
     >
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-lighter">

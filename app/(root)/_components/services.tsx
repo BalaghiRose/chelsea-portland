@@ -80,7 +80,7 @@ export default function Services() {
             <button
               aria-label="Previous service"
               onClick={() => swiperRef.current?.slidePrev()}
-              className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-[var(--color-primary)] bg-white text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:h-11 sm:w-11 lg:h-14 lg:w-14 [&_svg]:text-current hover:[&_svg]:!text-white"
+              className="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-[var(--color-primary)]  text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:h-11 sm:w-11 lg:h-14 lg:w-14 [&_svg]:text-current hover:[&_svg]:!text-white"
             >
               <ChevronLeft size={20} />
             </button>
@@ -91,7 +91,7 @@ export default function Services() {
             <button
               aria-label="Next service"
               onClick={() => swiperRef.current?.slideNext()}
-              className="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-[var(--color-primary)] bg-white text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:h-11 sm:w-11 lg:h-14 lg:w-14 [&_svg]:text-current hover:[&_svg]:!text-white"
+              className="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-[var(--color-primary)] text-primary shadow-sm transition hover:bg-[var(--color-primary)] hover:!text-white sm:h-11 sm:w-11 lg:h-14 lg:w-14 [&_svg]:text-current hover:[&_svg]:!text-white"
             >
               <ChevronRight size={20} />
             </button>

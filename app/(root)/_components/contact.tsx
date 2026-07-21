@@ -288,7 +288,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
                   required
                   aria-invalid={!!messageError}
                   aria-describedby={messageError ? "message-error" : undefined}
-                  className={`w-full border-0 border-b bg-transparent px-0 pb-4 pt-2 text-base outline-none transition focus:border-[#C59A5C] sm:text-lg ${
+                  className={`w-full border-0 border-b bg-transparent px-0 pb-4 pt-2 text-base outline-none transition focus:border-[#af0040] sm:text-lg ${
                     messageError ? "border-red-500" : "border-slate-300"
                   }`}
                 />

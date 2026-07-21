@@ -85,7 +85,7 @@ export default function ServiceTable({
 	};
 
 	return (
-		<section className="overflow-hidden rounded-3xl border border-border bg-card">
+		<section className="overflow-hidden border border-border bg-card">
 			<div className="border-b border-border px-6 py-3 text-xs text-muted-foreground">
 				Drag rows using the left handle to reorder services.
 			</div>
@@ -142,7 +142,7 @@ export default function ServiceTable({
 										</button>
 									</TableCell>
 									<TableCell>
-										<div className="relative h-12 w-12 overflow-hidden rounded-xl border border-border bg-muted/30">
+										<div className="relative h-12 w-12 overflow-hidden border border-border bg-muted/30">
 											{service.iconUrl ? (
 												<Image
 													src={service.iconUrl}
@@ -158,7 +158,7 @@ export default function ServiceTable({
 										</div>
 									</TableCell>
 									<TableCell>
-										<div className="relative h-14 w-24 overflow-hidden rounded-xl border border-border bg-muted/30">
+										<div className="relative h-14 w-24 overflow-hidden border border-border bg-muted/30">
 											{service.thumbnailUrl ? (
 												<Image
 													src={service.thumbnailUrl}

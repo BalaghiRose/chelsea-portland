@@ -70,13 +70,13 @@ export default function ServicesPage() {
         title="Services"
         description="Manage all services displayed on the Chelsea Portland website."
       >
-        <Button onClick={handleCreateClick} className="gap-2 rounded-2xl">
+        <Button onClick={handleCreateClick} className="gap-2">
           <Plus size={18} />
           Add Service
         </Button>
       </PageHeader>
 
-      <section className="my-8 rounded-3xl border border-border bg-card p-6">
+      <section className="my-8 border border-border bg-card p-6">
         <p className="mb-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
           Section Settings
         </p>
@@ -92,14 +92,13 @@ export default function ServicesPage() {
             <Input
               value={resolvedSectionTitle}
               onChange={(e) => setSectionTitle(e.target.value)}
-              className="h-11 rounded-2xl border-border bg-background"
+              className="h-11 border-border bg-background"
               placeholder="Services"
             />
           </div>
 
           <Button
             type="button"
-            className="rounded-2xl"
             disabled={savingSectionTitle}
             onClick={handleSaveSectionTitle}
           >

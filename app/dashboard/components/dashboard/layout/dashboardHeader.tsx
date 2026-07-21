@@ -26,11 +26,10 @@ export default function DashboardHeader() {
             <Button
               type="submit"
               variant="outline"
-              size="icon"
-              className="rounded-2xl border-border"
+              className="border border-red-500 bg-red-200 rounded-xs"
               aria-label="Sign out"
             >
-              <LogOut size={18} className="text-red-600"/> 
+             Logout <LogOut size={18} className="text-red-600" />
             </Button>
           </form>
         </div>

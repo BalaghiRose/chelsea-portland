@@ -85,7 +85,7 @@ export default function CaseStudyTable({
   };
 
   return (
-    <section className="overflow-hidden rounded-3xl border border-border bg-card">
+    <section className="overflow-hidden border border-border bg-card">
       <Table>
         <TableHeader>
           <TableRow>
@@ -139,7 +139,7 @@ export default function CaseStudyTable({
                   </TableCell>
 
                   <TableCell>
-                    <div className="relative h-14 w-24 overflow-hidden rounded-xl border border-border bg-muted/30">
+                    <div className="relative h-14 w-24 overflow-hidden border border-border bg-muted/30">
                       {study.thumbnailUrl ? (
                         <Image
                           src={study.thumbnailUrl}
